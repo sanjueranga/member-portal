@@ -3,9 +3,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import projectService from './projectService';
 
 const initialState = {
-	isError: false,
-	isSuccess: false,
-	isLoading: false,
+	projectIsError: false,
+	projectIsSuccess: false,
+	projectIsLoading: false,
 	allProjects: null,
 	currentProject:null,
 	message: '',
@@ -116,65 +116,65 @@ export const projectSlice = createSlice({
 	extraReducers: (builder) => {
 		builder
 			.addCase(create.pending, (state) => {
-				state.isLoading = true;
+				state.projectIsLoading = true;
 			})
 			.addCase(create.fulfilled, (state, action) => {
-				state.isLoading = false;
-				state.isSuccess = true;
+				state.projectIsLoading = false;
+				state.projectIsSuccess = true;
 				state.allProjects = action.payload;
 			})
 			.addCase(create.rejected, (state, action) => {
-				state.isLoading = false;
-				state.isError = true;
+				state.projectIsLoading = false;
+				state.projectIsError = true;
 				state.message = action.payload;
 			})
 			.addCase(getProjectByUserId.pending, (state) => {
-				state.isLoading = true;
+				state.projectIsLoading = true;
 			})
 			.addCase(getProjectByUserId.fulfilled, (state, action) => {
-				state.isLoading = false;
-				state.isSuccess = true;
+				state.projectIsLoading = false;
+				state.projectIsSuccess = true;
 				state.allProjects = action.payload;
 			})
 			.addCase(getProjectByUserId.rejected, (state, action) => {
-				state.isLoading = false;
-				state.isError = true;
+				state.projectIsLoading = false;
+				state.projectIsError = true;
 				state.message = action.payload;
 			})
 			.addCase(getProjectById.pending, (state) => {
-				state.isLoading = true;
+				state.projectIsLoading = true;
 			})
 			.addCase(getProjectById.fulfilled, (state, action) => {
-				state.isLoading = false;
-				state.isSuccess = true;
+				state.projectIsLoading = false;
+				state.projectIsSuccess = true;
 				state.currentProject = action.payload;
 			})
 			.addCase(getProjectById.rejected, (state, action) => {
-				state.isLoading = false;
-				state.isError = true;
+				state.projectIsLoading = false;
+				state.projectIsError = true;
 				state.message = action.payload;
 			})
 			.addCase(deleteProject.pending, (state) => {
-				state.isLoading = true;
+				state.projectIsLoading = true;
 			})
 			.addCase(deleteProject.fulfilled, (state, action) => {
-				state.isLoading = false;
-				state.isSuccess = true;
+				state.projectIsLoading = false;
+				state.projectIsSuccess = true;
 				state.allProjects = state.allProjects.filter(
 					(project) => project._id !== action.payload.id
 				);
 			})
 			.addCase(deleteProject.rejected, (state, action) => {
-				state.isLoading = false;
-				state.isError = true;
+				state.projectIsLoading = false;
+				state.projectIsError = true;
 				state.message = action.payload;
 			})
 			.addCase(updateProject.pending, (state) => {
-				state.isLoading = true;
+				state.projectIsLoading = true;
 			})
 			.addCase(updateProject.fulfilled, (state, action) => {
-				state.isLoading = false;
-				state.isSuccess = true;
+				state.projectIsLoading = false;
+				state.projectIsSuccess = true;
 				state.allProjects = state.allProjects.map((project) => {
 					if (project._id === action.payload.id) {
 						project.title = action.payload.data.title;
@@ -188,8 +188,8 @@ export const projectSlice = createSlice({
 				});
 			})
 			.addCase(updateProject.rejected, (state, action) => {
-				state.isLoading = false;
-				state.isError = true;
+				state.projectIsLoading = false;
+				state.projectIsError = true;
 				state.message = action.payload;
 			});
 	},
