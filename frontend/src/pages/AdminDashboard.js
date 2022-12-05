@@ -24,9 +24,9 @@ function AdminDashboard() {
 			navigate('/');
 		}
 		dispatch(getUsers());
-		return () => {
-			dispatch(reset());
-		};
+		// return () => {
+		// 	dispatch(reset());
+		// };
 	}, [user, navigate, isError, message, dispatch, isSuccess]);
 
 	return (
