@@ -1,20 +1,32 @@
+import { useEffect, useState } from 'react';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Members from './pages/Members';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
 import { ToastContainer } from 'react-toastify';
+import { useSelector, useDispatch } from 'react-redux';
+
 import 'react-toastify/dist/ReactToastify.css';
 import Header from './components/Header';
 import AdminDashboard from './pages/AdminDashboard';
 import Home from './pages/Home';
 import EditPage from './pages/EditPage';
-import { useState } from 'react';
 import Backdrop from './img/backdrop.avif';
 import Footer from './components/Footer';
+import { getMe } from './features/users/userSlice';
 
 function App() {
 	const [searchName, setSearchName] = useState();
+	const dispatch = useDispatch();
+	const { user } = useSelector((state) => state.auth);
+	useEffect(() => {
+		if (user) {
+			dispatch(getMe(user.token));
+		}
+	}, [user]);
+
 
 	return (
 		<>

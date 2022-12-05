@@ -114,7 +114,7 @@ export default function Profile() {
   const { _id, email, title, desc, github, website, tags } = projectDetails;
   const onAddProject = (e) => {
     e.preventDefault();
-
+    let errorMessage = "";
     const projectData = {
       userId: profileOwner._id,
       email: profileOwner.email,
@@ -127,16 +127,23 @@ export default function Profile() {
     for (const key in projectData) {
       // console.log(`${key}: ${projectData[key]}`);
       if (projectData[key] === "") {
-        toast.error("Please fill all fields", { theme: "dark" });
-        console.log(projectData);
+        if (key === "title") {
+          errorMessage = "Title";
+        }
+        if (key === "desc") {
+          errorMessage = "Description";
+        }
+        toast.error(`${errorMessage} cannot be empty !`, { theme: "dark" });
+        // console.log(projectData);
 
         setAddProject(false);
         break;
       }
     }
+	setAddProject(true);
 
     if (addProject) {
-      console.log(projectData);
+      console.log(addProject);
       dispatch(create(projectData));
       dispatch(getProjectByUserId(id));
       toast.success("Project Added !", { theme: "dark" });
@@ -506,7 +513,7 @@ export default function Profile() {
             <>
               <label htmlFor="my-modal" className="btn btn-outline btn-info">
                 <i className="fa-solid fa-folder-plus mr-4"></i>
-                Add Project 
+                Add Project
               </label>
 
               <input type="checkbox" id="my-modal" className="modal-toggle" />
@@ -556,6 +563,7 @@ export default function Profile() {
                           onChange={onChange}
                           placeholder="Enter Brief Idea About Your Project"
                           className="block w-full pl-5 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-300 text-base outline-none text-gray-100 leading-8 transition-colors duration-200 ease-in-out"
+                          required
                         />
                       </div>
                       <p className="mt-2 text-sm text-gray-400">
@@ -643,9 +651,12 @@ export default function Profile() {
         </div>
         {allProjects && allProjects.length !== 0 ? (
           allProjects &&
-          allProjects.slice(0).reverse().map((project, index) => (
-            <ProjectTab project={project} index={index} />
-          ))
+          allProjects
+            .slice(0)
+            .reverse()
+            .map((project, index) => (
+              <ProjectTab project={project} index={index} />
+            ))
         ) : (
           <p className="pt-5 text-xs lg:text-lg text-gray-300">
             No Projects available Yet!

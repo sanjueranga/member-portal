@@ -1,7 +1,4 @@
 import { useEffect, useState } from 'react';
-
-import { Disclosure } from '@headlessui/react';
-import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../img/logo.png';
 
