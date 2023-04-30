@@ -138,6 +138,25 @@ export const approveUser = createAsyncThunk(
 	}
 );
 
+//approve user
+export const updateRole = createAsyncThunk(
+	'user/update/role',
+	async (userData, thunkAPI) => {
+		try {
+			// console.log('userSlice : ', userData);
+			return await userService.updateRole(userData._id, userData);
+		} catch (error) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
+
 //updateAll
 export const updateAll = createAsyncThunk(
 	'user/updateall',
@@ -243,16 +262,27 @@ export const userSlice = createSlice({
 				state.isLoading = false;
 				state.isSuccess = true;
 				state.totalUsers = state.allUsers;
-				state.CurrentUser = state.allUsers.find((users) => {
-					if (users._id === action.payload.id) {
-						return action.payload.id;
-					}
-				});
 				state.allUsers = state.allUsers.filter(
 					(user) => user._id !== action.payload.id
 				);
 			})
 			.addCase(approveUser.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+			})
+			.addCase(updateRole.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(updateRole.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.totalUsers = state.allUsers;
+				state.allUsers = state.allUsers.filter(
+					(user) => user._id !== action.payload.id
+				);
+			})
+			.addCase(updateRole.rejected, (state, action) => {
 				state.isLoading = false;
 				state.isError = true;
 				state.message = action.payload;

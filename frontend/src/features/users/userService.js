@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const API_URL = '/student/';
 //create new user
-
 const register = async (userData) => {
 	const response = await axios.post(API_URL + 'register/', userData);
 	return response.data;
@@ -76,7 +75,16 @@ const approveUser = async (id, userData) => {
 
 	return response.data;
 };
+const updateRole = async (id, userData) => {
+	// console.log('userService : ', userData);
+	const response = await axios.put(
+		API_URL + 'update/role/' + id,
+		userData
+		// {userStatus: true,confirmDate: applyDate,approvedBy: user.name,}
+	);
 
+	return response.data;
+};
 const userService = {
 	register,
 	getUsers,
@@ -85,6 +93,7 @@ const userService = {
 	getMe,
 	approveUser,
 	getUserById,
+	updateRole,
 };
 
 export default userService;

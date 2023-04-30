@@ -9,6 +9,7 @@ const {
 	deleteUser,
 	getUserById,
 	approveUser,
+	updateRole,
 } = require('../controllers/userController');
 
 const {
@@ -17,7 +18,7 @@ const {
 	getAllProjects,
 	deletePoject,
 	updateProject,
-	getProjectById
+	getProjectById,
 } = require('../controllers/projectsController');
 
 const protect = require('../middleware/authMiddleware');
@@ -34,6 +35,7 @@ router.delete('/project/delete/:id', deletePoject);
 router.put('/update/:id', updateUser);
 router.put('/approve/:id', approveUser);
 router.put('/project/update/:id', updateProject);
+router.put('/update/role/:id', updateRole);
 
 router.get('/get/:id', getUserById);
 router.get('/user', protect, getUser);

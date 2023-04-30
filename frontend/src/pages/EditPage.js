@@ -219,37 +219,37 @@ function EditPage() {
 
 	return (
 		<>
-			<div className="relative py-8 flex justify-center">
-				<div className="w-[70%]">
-					<h2 className="mb-8 text-2xl text-gray-300 font-bold flex flex-row">
+			<div className='relative flex justify-center py-8'>
+				<div className='w-[70%]'>
+					<h2 className='flex flex-row mb-8 text-2xl font-bold text-gray-300'>
 						Edit your account
 					</h2>
 
-					<div className="mt-5 md:mt-0 md:col-span-2 ">
+					<div className='mt-5 md:mt-0 md:col-span-2 '>
 						{showMessage ? (
-							<div className="alert alert-info shadow-lg">
+							<div className='shadow-lg alert alert-info'>
 								<div>
 									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										fill="none"
-										viewBox="0 0 24 24"
-										className="stroke-current flex-shrink-0 w-6 h-6"
+										xmlns='http://www.w3.org/2000/svg'
+										fill='none'
+										viewBox='0 0 24 24'
+										className='flex-shrink-0 w-6 h-6 stroke-current'
 									>
 										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											strokeWidth="2"
-											d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth='2'
+											d='M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
 										></path>
 									</svg>
 									<span>If your data is not updated, please login again.</span>
 								</div>
-								<div className="flex-none">
+								<div className='flex-none'>
 									<button
 										onClick={() => {
 											setShowMessage(false);
 										}}
-										className="btn btn-sm"
+										className='btn btn-sm'
 									>
 										X
 									</button>
@@ -260,127 +260,127 @@ function EditPage() {
 						)}
 						{profileOwner ? (
 							<>
-								<form onSubmit={onSubmit} autoComplete="on">
-									<div className="shadow sm:rounded-md sm:overflow-hidden ">
-										<div className="px-4 py-5 bg-neutral space-y-6 sm:p-6 ">
-											<h2 className="mb-4 text-xl text-gray-300 font-bold flex flex-row">
+								<form onSubmit={onSubmit} autoComplete='on'>
+									<div className='shadow sm:rounded-md sm:overflow-hidden '>
+										<div className='px-4 py-5 space-y-6 bg-neutral sm:p-6 '>
+											<h2 className='flex flex-row mb-4 text-xl font-bold text-gray-300'>
 												Personal Information
 											</h2>
-											<div className="grid grid-cols-6 gap-6">
-												<div className="col-span-6 sm:col-span-3">
-													<label className="text-gray-300">Name</label>
-													<div className="relative flex items-center text-gray-400 focus-within:text-cyan-400">
-														<span className="absolute left-4 h-6 flex items-center pr-4 border-r border-gray-500">
-															<i className="text-lg md:text-base fa-solid fa-user"></i>
+											<div className='grid grid-cols-6 gap-6'>
+												<div className='col-span-6 sm:col-span-3'>
+													<label className='text-gray-300'>Name</label>
+													<div className='relative flex items-center text-gray-400 focus-within:text-cyan-400'>
+														<span className='absolute flex items-center h-6 pr-4 border-r border-gray-500 left-4'>
+															<i className='text-lg md:text-base fa-solid fa-user'></i>
 														</span>{' '}
 														<input
-															type="text"
-															name="name"
-															id="name"
+															type='text'
+															name='name'
+															id='name'
 															value={name}
-															autoComplete="name"
-															placeholder="Enter Your Name"
+															autoComplete='name'
+															placeholder='Enter Your Name'
 															onChange={onChange}
-															className="block w-full  pl-16 pr-4 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-300 text-base outline-none text-gray-300 leading-8 transition-colors duration-200 ease-in-out"
+															className='block w-full py-3 pl-16 pr-4 text-base leading-8 text-gray-300 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-300'
 															required
 														/>
 													</div>
 												</div>
 
-												<div className="col-span-6 sm:col-span-3">
-													<label className="text-gray-300">
+												<div className='col-span-6 sm:col-span-3'>
+													<label className='text-gray-300'>
 														Email{' '}
-														<span className="text-gray-400">
+														<span className='text-gray-400'>
 															(University email is preferred)
 														</span>
 													</label>
-													<div className="relative flex items-center text-gray-400 focus-within:text-cyan-400">
-														<span className="absolute left-4 h-6 flex items-center pr-4 border-r border-gray-500">
-															<i className="text-lg md:text-base fa-solid fa-envelope"></i>
+													<div className='relative flex items-center text-gray-400 focus-within:text-cyan-400'>
+														<span className='absolute flex items-center h-6 pr-4 border-r border-gray-500 left-4'>
+															<i className='text-lg md:text-base fa-solid fa-envelope'></i>
 														</span>{' '}
 														<input
 															disabled
-															type="email"
-															name="email"
-															id="email"
+															type='email'
+															name='email'
+															id='email'
 															value={email}
-															autoComplete="email"
-															placeholder="Enter Your Email"
+															autoComplete='email'
+															placeholder='Enter Your Email'
 															onChange={onChange}
-															className="block w-full pl-16 pr-4 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-500 text-base outline-none text-gray-300 leading-8 transition-colors duration-200 ease-in-out"
+															className='block w-full py-3 pl-16 pr-4 text-base leading-8 text-gray-300 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-500'
 															required
 														/>
 													</div>
 												</div>
 											</div>
-											<div className="grid grid-cols-6 gap-6">
-												<div className="col-span-6 sm:col-span-3">
-													<label className="text-gray-300">BirthDate</label>
-													<div className="relative flex items-center text-gray-400 focus-within:text-cyan-400">
-														<span className="absolute left-4 h-6 flex items-center pr-4 border-r border-gray-500">
-															<i className="text-lg md:text-base fa-solid fa-calendar"></i>
+											<div className='grid grid-cols-6 gap-6'>
+												<div className='col-span-6 sm:col-span-3'>
+													<label className='text-gray-300'>BirthDate</label>
+													<div className='relative flex items-center text-gray-400 focus-within:text-cyan-400'>
+														<span className='absolute flex items-center h-6 pr-4 border-r border-gray-500 left-4'>
+															<i className='text-lg md:text-base fa-solid fa-calendar'></i>
 														</span>{' '}
 														<input
-															type="date"
-															name="birthDate"
-															id="birthDate"
+															type='date'
+															name='birthDate'
+															id='birthDate'
 															value={birthDate}
-															autoComplete="birthDate"
+															autoComplete='birthDate'
 															onChange={onChange}
-															className="block w-full  pl-16 pr-4 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-300 text-base outline-none text-gray-300 leading-8 transition-colors duration-200 ease-in-out"
+															className='block w-full py-3 pl-16 pr-4 text-base leading-8 text-gray-300 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-300'
 														/>
 													</div>
 												</div>
 
-												<div className="col-span-6 sm:col-span-3">
-													<label className="text-gray-300">
+												<div className='col-span-6 sm:col-span-3'>
+													<label className='text-gray-300'>
 														Headline{' '}
-														<span className="text-gray-400">
+														<span className='text-gray-400'>
 															(Brief about you)
 														</span>
 													</label>
-													<div className="relative flex items-center text-gray-400 focus-within:text-cyan-400">
-														<span className="absolute left-4 h-6 flex items-center pr-4 border-r border-gray-500">
-															<i className="text-lg md:text-base fa-solid fa-heading"></i>
+													<div className='relative flex items-center text-gray-400 focus-within:text-cyan-400'>
+														<span className='absolute flex items-center h-6 pr-4 border-r border-gray-500 left-4'>
+															<i className='text-lg md:text-base fa-solid fa-heading'></i>
 														</span>{' '}
 														<input
-															type="text"
-															name="headline"
-															id="headline"
+															type='text'
+															name='headline'
+															id='headline'
 															value={headline}
-															autoComplete="headline"
+															autoComplete='headline'
 															onChange={onChange}
-															placeholder="Enter Headline"
-															className="block w-full pl-16 pr-4 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-500 text-base outline-none text-gray-300 leading-8 transition-colors duration-200 ease-in-out"
+															placeholder='Enter Headline'
+															className='block w-full py-3 pl-16 pr-4 text-base leading-8 text-gray-300 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-500'
 														/>
 													</div>
 												</div>
 											</div>
 											<div>
-												<label className="text-gray-300">About</label>
-												<div className="mt-1">
+												<label className='text-gray-300'>About</label>
+												<div className='mt-1'>
 													<textarea
-														type="text"
-														name="about"
-														id="about"
+														type='text'
+														name='about'
+														id='about'
 														value={about}
-														autoComplete="about"
+														autoComplete='about'
 														onChange={onChange}
-														placeholder="Enter Brief About You"
-														className="block w-full pl-5 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-300 text-base outline-none text-gray-100 leading-8 transition-colors duration-200 ease-in-out"
+														placeholder='Enter Brief About You'
+														className='block w-full py-3 pl-5 text-base leading-8 text-gray-100 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-300'
 													/>
 												</div>
-												<p className="mt-2 text-sm text-gray-400">
+												<p className='mt-2 text-sm text-gray-400'>
 													Brief description for your profile.
 												</p>
 											</div>
 
 											<div>
-												<label className="text-gray-300">Profile Picture</label>
-												<div className="flex items-center">
-													<span className="inline-block mask mask-squircle w-20 h-auto overflow-hidden bg-gray-100">
+												<label className='text-gray-300'>Profile Picture</label>
+												<div className='flex items-center'>
+													<span className='inline-block w-20 h-auto overflow-hidden bg-gray-100 mask mask-squircle'>
 														{/* <svg
-													className="h-full w-full text-gray-300"
+													className="w-full h-full text-gray-300"
 													fill="currentColor"
 													viewBox="0 0 24 24"
 												>
@@ -388,110 +388,110 @@ function EditPage() {
 												</svg> */}
 														{imageLoading || !imageIsValid ? (
 															<svg
-																xmlns="http://www.w3.org/2000/svg"
-																className="icon icon-tabler icon-tabler-photo h-full w-full text-gray-400"
-																viewBox="0 0 24 24"
-																strokeWidth="2"
-																stroke="currentColor"
-																fill="none"
-																strokeLinecap="round"
-																strokeLinejoin="round"
+																xmlns='http://www.w3.org/2000/svg'
+																className='w-full h-full text-gray-400 icon icon-tabler icon-tabler-photo'
+																viewBox='0 0 24 24'
+																strokeWidth='2'
+																stroke='currentColor'
+																fill='none'
+																strokeLinecap='round'
+																strokeLinejoin='round'
 															>
 																<path
-																	stroke="none"
-																	d="M0 0h24v24H0z"
-																	fill="none"
+																	stroke='none'
+																	d='M0 0h24v24H0z'
+																	fill='none'
 																></path>
-																<line x1="15" y1="8" x2="15.01" y2="8"></line>
+																<line x1='15' y1='8' x2='15.01' y2='8'></line>
 																<rect
-																	x="4"
-																	y="4"
-																	width="16"
-																	height="16"
-																	rx="3"
+																	x='4'
+																	y='4'
+																	width='16'
+																	height='16'
+																	rx='3'
 																></rect>
-																<path d="M4 15l4 -4a3 5 0 0 1 3 0l5 5"></path>
-																<path d="M14 14l1 -1a3 5 0 0 1 3 0l2 2"></path>
+																<path d='M4 15l4 -4a3 5 0 0 1 3 0l5 5'></path>
+																<path d='M14 14l1 -1a3 5 0 0 1 3 0l2 2'></path>
 															</svg>
 														) : (
 															<img
 																src={profilePic}
 																alt={name}
-																className="mx-auto overflow-hidden"
+																className='mx-auto overflow-hidden'
 															/>
 														)}
 													</span>
 
 													<input
-														type="text"
-														name="profilePic"
-														id="profilePic"
+														type='text'
+														name='profilePic'
+														id='profilePic'
 														value={profilePic}
-														autoComplete="profilePic"
+														autoComplete='profilePic'
 														onChange={onChange}
-														placeholder="URL of Your Profile Picture"
-														className="block w-full ml-5 px-4 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-500 text-base outline-none text-gray-100 leading-8 transition-colors duration-200 ease-in-out"
+														placeholder='URL of Your Profile Picture'
+														className='block w-full px-4 py-3 ml-5 text-base leading-8 text-gray-100 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-500'
 														required
 													/>
 												</div>
 											</div>
 
-											<div className="grid grid-cols-6 gap-6">
-												<div className="col-span-6 sm:col-span-6 lg:col-span-2">
-													<label className="text-gray-300">
+											<div className='grid grid-cols-6 gap-6'>
+												<div className='col-span-6 sm:col-span-6 lg:col-span-2'>
+													<label className='text-gray-300'>
 														Registration Number{' '}
 													</label>
-													<div className="relative flex items-center text-gray-400 focus-within:text-cyan-400">
-														<span className="absolute left-4 h-6 flex items-center pr-4 border-r border-gray-500">
-															<i className="text-lg md:text-base fa-solid fa-id-card"></i>
+													<div className='relative flex items-center text-gray-400 focus-within:text-cyan-400'>
+														<span className='absolute flex items-center h-6 pr-4 border-r border-gray-500 left-4'>
+															<i className='text-lg md:text-base fa-solid fa-id-card'></i>
 														</span>{' '}
 														<input
 															disabled
-															type="text"
-															name="regNo"
-															id="regNo"
+															type='text'
+															name='regNo'
+															id='regNo'
 															value={regNo}
-															autoComplete="regNo"
+															autoComplete='regNo'
 															onChange={onChange}
-															placeholder="Enter Registration Number"
-															className="block w-full pl-16 pr-4 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-500 text-base outline-none text-gray-100 leading-8 transition-colors duration-200 ease-in-out"
+															placeholder='Enter Registration Number'
+															className='block w-full py-3 pl-16 pr-4 text-base leading-8 text-gray-100 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-500'
 															required
 														/>
 													</div>
 												</div>
 
-												<div className="col-span-6 sm:col-span-3 lg:col-span-2">
-													<label className="text-gray-300">
+												<div className='col-span-6 sm:col-span-3 lg:col-span-2'>
+													<label className='text-gray-300'>
 														Contact Number
 													</label>
-													<div className="relative flex items-center text-gray-400 focus-within:text-cyan-400">
-														<span className="absolute left-4 h-6 flex items-center pr-4 border-r border-gray-500">
-															<i className="text-lg md:text-base fa-solid fa-phone"></i>
+													<div className='relative flex items-center text-gray-400 focus-within:text-cyan-400'>
+														<span className='absolute flex items-center h-6 pr-4 border-r border-gray-500 left-4'>
+															<i className='text-lg md:text-base fa-solid fa-phone'></i>
 														</span>{' '}
 														<input
-															type="text"
-															name="contactNumber"
-															id="contactNumber"
+															type='text'
+															name='contactNumber'
+															id='contactNumber'
 															value={contactNumber}
-															autoComplete="phone"
+															autoComplete='phone'
 															onChange={onChange}
-															placeholder="Enter Contact Number"
-															className="block w-full pl-16 pr-4 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-500 text-base outline-none text-gray-100 leading-8 transition-colors duration-200 ease-in-out"
+															placeholder='Enter Contact Number'
+															className='block w-full py-3 pl-16 pr-4 text-base leading-8 text-gray-100 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-500'
 															required
 														/>
 													</div>
 												</div>
 
-												<div className="col-span-6 sm:col-span-3 lg:col-span-2">
-													<label className="text-gray-300">Gender</label>
-													<div className="relative flex items-center text-gray-400 focus-within:text-cyan-400">
-														<span className="absolute left-4 h-6 flex items-center pr-4 border-r border-gray-500">
-															<i className="text-lg md:text-base fa-solid fa-mars-and-venus"></i>
+												<div className='col-span-6 sm:col-span-3 lg:col-span-2'>
+													<label className='text-gray-300'>Gender</label>
+													<div className='relative flex items-center text-gray-400 focus-within:text-cyan-400'>
+														<span className='absolute flex items-center h-6 pr-4 border-r border-gray-500 left-4'>
+															<i className='text-lg md:text-base fa-solid fa-mars-and-venus'></i>
 														</span>{' '}
 														<select
 															onChange={onChange}
-															name="gender"
-															className=" pl-16 pr-4 select select-bordered w-full rounded-md text-base focus:border-sky-500  leading-8 transition-colors duration-200 ease-in-out"
+															name='gender'
+															className='w-full pl-16 pr-4 text-base leading-8 transition-colors duration-200 ease-in-out rounded-md  select select-bordered focus:border-sky-500'
 														>
 															{(user && gender === 'Male') ||
 															(user && gender === 'Female') ? (
@@ -504,192 +504,192 @@ function EditPage() {
 																	{user.gender}
 																</option>
 															) : (
-																<option value="none" disabled selected hidden>
+																<option value='none' disabled selected hidden>
 																	Select Gender
 																</option>
 															)}
-															<option value="Male">Male</option>
-															<option value="Female">Female</option>
+															<option value='Male'>Male</option>
+															<option value='Female'>Female</option>
 														</select>
 													</div>
 												</div>
 											</div>
 
-											<h2 className="mb-4 text-xl text-gray-300 font-bold flex flex-row border-t pt-3 ">
+											<h2 className='flex flex-row pt-3 mb-4 text-xl font-bold text-gray-300 border-t '>
 												Social Media Information
 											</h2>
-											<div className="grid grid-cols-6 gap-6">
-												<div className="col-span-6 sm:col-span-3">
-													<label className="text-gray-300">Facebook</label>
-													<div className="relative flex items-center text-gray-400 focus-within:text-cyan-400">
-														<span className="absolute left-4 h-6 flex items-center pr-4 border-r border-gray-500">
-															<i className="text-lg md:text-base fa-brands fa-facebook-f"></i>
+											<div className='grid grid-cols-6 gap-6'>
+												<div className='col-span-6 sm:col-span-3'>
+													<label className='text-gray-300'>Facebook</label>
+													<div className='relative flex items-center text-gray-400 focus-within:text-cyan-400'>
+														<span className='absolute flex items-center h-6 pr-4 border-r border-gray-500 left-4'>
+															<i className='text-lg md:text-base fa-brands fa-facebook-f'></i>
 														</span>{' '}
 														<input
-															type="text"
-															name="facebook"
-															id="facebook"
+															type='text'
+															name='facebook'
+															id='facebook'
 															value={facebook}
-															autoComplete="facebook"
+															autoComplete='facebook'
 															onChange={onChange}
-															placeholder="URL of Facebook Account"
-															className="block w-full  pl-16 pr-4 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-300 text-base outline-none text-gray-300 leading-8 transition-colors duration-200 ease-in-out"
+															placeholder='URL of Facebook Account'
+															className='block w-full py-3 pl-16 pr-4 text-base leading-8 text-gray-300 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-300'
 														/>
 													</div>
 												</div>
 
-												<div className="col-span-6 sm:col-span-3">
-													<label className="text-gray-300">Linkdin</label>
-													<div className="relative flex items-center text-gray-400 focus-within:text-cyan-400">
-														<span className="absolute left-4 h-6 flex items-center pr-4 border-r border-gray-500">
-															<i className="text-lg md:text-base fa-brands fa-linkedin-in"></i>
+												<div className='col-span-6 sm:col-span-3'>
+													<label className='text-gray-300'>Linkdin</label>
+													<div className='relative flex items-center text-gray-400 focus-within:text-cyan-400'>
+														<span className='absolute flex items-center h-6 pr-4 border-r border-gray-500 left-4'>
+															<i className='text-lg md:text-base fa-brands fa-linkedin-in'></i>
 														</span>{' '}
 														<input
-															type="text"
-															name="linkdin"
-															id="linkdin"
+															type='text'
+															name='linkdin'
+															id='linkdin'
 															value={linkdin}
-															autoComplete="linkdin"
+															autoComplete='linkdin'
 															onChange={onChange}
-															placeholder="URL of Linkdin Account"
-															className="block w-full pl-16 pr-4 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-500 text-base outline-none text-gray-300 leading-8 transition-colors duration-200 ease-in-out"
+															placeholder='URL of Linkdin Account'
+															className='block w-full py-3 pl-16 pr-4 text-base leading-8 text-gray-300 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-500'
 														/>
 													</div>
 												</div>
 											</div>
-											<div className="grid grid-cols-6 gap-6">
-												<div className="col-span-6 sm:col-span-3">
-													<label className="text-gray-300">Twitter</label>
-													<div className="relative flex items-center text-gray-400 focus-within:text-cyan-400">
-														<span className="absolute left-4 h-6 flex items-center pr-4 border-r border-gray-500">
-															<i className="text-lg md:text-base fa-brands fa-twitter"></i>
+											<div className='grid grid-cols-6 gap-6'>
+												<div className='col-span-6 sm:col-span-3'>
+													<label className='text-gray-300'>Twitter</label>
+													<div className='relative flex items-center text-gray-400 focus-within:text-cyan-400'>
+														<span className='absolute flex items-center h-6 pr-4 border-r border-gray-500 left-4'>
+															<i className='text-lg md:text-base fa-brands fa-twitter'></i>
 														</span>{' '}
 														<input
-															type="text"
-															name="twitter"
-															id="twitter"
+															type='text'
+															name='twitter'
+															id='twitter'
 															value={twitter}
-															autoComplete="twitter"
+															autoComplete='twitter'
 															onChange={onChange}
-															placeholder="URL of Twitter Account"
-															className="block w-full  pl-16 pr-4 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-300 text-base outline-none text-gray-300 leading-8 transition-colors duration-200 ease-in-out"
+															placeholder='URL of Twitter Account'
+															className='block w-full py-3 pl-16 pr-4 text-base leading-8 text-gray-300 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-300'
 														/>
 													</div>
 												</div>
 
-												<div className="col-span-6 sm:col-span-3">
-													<label className="text-gray-300">Github</label>
-													<div className="relative flex items-center text-gray-400 focus-within:text-cyan-400">
-														<span className="absolute left-4 h-6 flex items-center pr-4 border-r border-gray-500">
-															<i className="text-lg md:text-base fa-brands fa-github"></i>
+												<div className='col-span-6 sm:col-span-3'>
+													<label className='text-gray-300'>Github</label>
+													<div className='relative flex items-center text-gray-400 focus-within:text-cyan-400'>
+														<span className='absolute flex items-center h-6 pr-4 border-r border-gray-500 left-4'>
+															<i className='text-lg md:text-base fa-brands fa-github'></i>
 														</span>{' '}
 														<input
-															type="text"
-															name="github"
-															id="github"
+															type='text'
+															name='github'
+															id='github'
 															value={github}
-															autoComplete="github"
+															autoComplete='github'
 															onChange={onChange}
-															placeholder="URL of Github Account"
-															className="block w-full pl-16 pr-4 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-500 text-base outline-none text-gray-300 leading-8 transition-colors duration-200 ease-in-out"
+															placeholder='URL of Github Account'
+															className='block w-full py-3 pl-16 pr-4 text-base leading-8 text-gray-300 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-500'
 														/>
 													</div>
 												</div>
 											</div>
-											<div className="grid grid-cols-6 gap-6">
-												<div className="col-span-6 sm:col-span-3">
-													<label className="text-gray-300">Instagram</label>
-													<div className="relative flex items-center text-gray-400 focus-within:text-cyan-400">
-														<span className="absolute left-4 h-6 flex items-center pr-4 border-r border-gray-500">
-															<i className="text-lg md:text-base fa-brands fa-instagram"></i>
+											<div className='grid grid-cols-6 gap-6'>
+												<div className='col-span-6 sm:col-span-3'>
+													<label className='text-gray-300'>Instagram</label>
+													<div className='relative flex items-center text-gray-400 focus-within:text-cyan-400'>
+														<span className='absolute flex items-center h-6 pr-4 border-r border-gray-500 left-4'>
+															<i className='text-lg md:text-base fa-brands fa-instagram'></i>
 														</span>{' '}
 														<input
-															type="text"
-															name="instagram"
-															id="instagram"
+															type='text'
+															name='instagram'
+															id='instagram'
 															value={instagram}
-															autoComplete="instagram"
-															placeholder="URL of Instagram Account"
+															autoComplete='instagram'
+															placeholder='URL of Instagram Account'
 															onChange={onChange}
-															className="block w-full  pl-16 pr-4 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-300 text-base outline-none text-gray-300 leading-8 transition-colors duration-200 ease-in-out"
+															className='block w-full py-3 pl-16 pr-4 text-base leading-8 text-gray-300 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-300'
 														/>
 													</div>
 												</div>
 
-												<div className="col-span-6 sm:col-span-3">
-													<label className="text-gray-300">Website</label>
-													<div className="relative flex items-center text-gray-400 focus-within:text-cyan-400">
-														<span className="absolute left-4 h-6 flex items-center pr-4 border-r border-gray-500">
-															<i className="text-lg md:text-base fa-solid fa-link"></i>
+												<div className='col-span-6 sm:col-span-3'>
+													<label className='text-gray-300'>Website</label>
+													<div className='relative flex items-center text-gray-400 focus-within:text-cyan-400'>
+														<span className='absolute flex items-center h-6 pr-4 border-r border-gray-500 left-4'>
+															<i className='text-lg md:text-base fa-solid fa-link'></i>
 														</span>{' '}
 														<input
-															type="text"
-															name="website"
-															id="website"
+															type='text'
+															name='website'
+															id='website'
 															value={website}
-															autoComplete="website"
+															autoComplete='website'
 															onChange={onChange}
-															placeholder="URL of Your Website"
-															className="block w-full pl-16 pr-4 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-500 text-base outline-none text-gray-300 leading-8 transition-colors duration-200 ease-in-out"
+															placeholder='URL of Your Website'
+															className='block w-full py-3 pl-16 pr-4 text-base leading-8 text-gray-300 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-500'
 														/>
 													</div>
 												</div>
 											</div>
-											<h2 className="mb-4 text-xl text-gray-300 font-bold flex flex-row border-t pt-3 ">
+											<h2 className='flex flex-row pt-3 mb-4 text-xl font-bold text-gray-300 border-t '>
 												Qualifications
 											</h2>
-											<div className="col-span-6 sm:col-span-3 lg:col-span-2">
-												<label className="text-gray-300">Skills</label>
-												<div className="relative flex items-center text-gray-400 focus-within:text-cyan-400">
-													<span className="absolute left-4 h-6 flex items-center pr-4 border-r border-gray-500">
-														<i className="text-lg md:text-base fa-solid fa-list-check"></i>
+											<div className='col-span-6 sm:col-span-3 lg:col-span-2'>
+												<label className='text-gray-300'>Skills</label>
+												<div className='relative flex items-center text-gray-400 focus-within:text-cyan-400'>
+													<span className='absolute flex items-center h-6 pr-4 border-r border-gray-500 left-4'>
+														<i className='text-lg md:text-base fa-solid fa-list-check'></i>
 													</span>{' '}
 													<input
-														type="text"
-														name="skills"
-														id="skills"
+														type='text'
+														name='skills'
+														id='skills'
 														value={skills}
-														autoComplete="skills"
+														autoComplete='skills'
 														onChange={onChange}
-														placeholder="Enter Your Skills"
-														className="block w-full pl-16 pr-4 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-500 text-base outline-none text-gray-100 leading-8 transition-colors duration-200 ease-in-out"
+														placeholder='Enter Your Skills'
+														className='block w-full py-3 pl-16 pr-4 text-base leading-8 text-gray-100 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-500'
 													/>
 												</div>
-												<p className="mt-2 text-sm text-gray-400">
+												<p className='mt-2 text-sm text-gray-400'>
 													Enter your Skills seperated by comma (' , ') eg -
 													html,css,reactjs
 												</p>
 											</div>
 
-											<div className="col-span-6 sm:col-span-3 lg:col-span-2">
-												<label className="text-gray-300">
-													Upload Your CV <span className="text-gray-400"></span>
+											<div className='col-span-6 sm:col-span-3 lg:col-span-2'>
+												<label className='text-gray-300'>
+													Upload Your CV <span className='text-gray-400'></span>
 												</label>
 
-												<div className="relative flex items-center text-gray-400 focus-within:text-cyan-400">
-													<span className="absolute left-4 h-6 flex items-center pr-4 border-r border-gray-500">
-														<i className="text-lg md:text-base fa-solid fa-file"></i>
+												<div className='relative flex items-center text-gray-400 focus-within:text-cyan-400'>
+													<span className='absolute flex items-center h-6 pr-4 border-r border-gray-500 left-4'>
+														<i className='text-lg md:text-base fa-solid fa-file'></i>
 													</span>{' '}
 													<input
-														type="text"
-														name="cv"
-														id="cv"
+														type='text'
+														name='cv'
+														id='cv'
 														value={cv}
-														autoComplete="cv"
-														placeholder="Enter Your CV"
+														autoComplete='cv'
+														placeholder='Enter Your CV'
 														onChange={onChange}
-														className="block w-full pl-16 pr-4 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-500 text-base outline-none text-gray-100 leading-8 transition-colors duration-200 ease-in-out"
+														className='block w-full py-3 pl-16 pr-4 text-base leading-8 text-gray-100 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-500'
 													/>
 												</div>
-												<p className="mt-2 text-sm text-gray-400">
+												<p className='mt-2 text-sm text-gray-400'>
 													First Upload your CV into google drive, make sure the
 													link is not restricted. Then paste the link here.
 												</p>
 											</div>
-											<div className="px-4 py-3 bg-neutral text-right sm:px-6">
+											<div className='px-4 py-3 text-right bg-neutral sm:px-6'>
 												<button
-													type="submit"
-													className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+													type='submit'
+													className='inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
 												>
 													Confirm
 												</button>
@@ -697,53 +697,53 @@ function EditPage() {
 										</div>
 									</div>
 								</form>
-								<h2 className="mb-2 text-xl text-error font-bold flex flex-row border-t pt-3 mt-6">
+								<h2 className='flex flex-row pt-3 mt-6 mb-2 text-xl font-bold border-t text-error'>
 									Delete account
 								</h2>
-								<p className="py-2 text-base">
+								<p className='py-2 text-base'>
 									Once you delete your account, there is no going back. Please
 									be certain.
 								</p>
-								<label htmlFor="my-modal" className="btn btn-outline btn-error">
+								<label htmlFor='my-modal' className='btn btn-outline btn-error'>
 									Delete your account
 								</label>
 
-								<input type="checkbox" id="my-modal" className="modal-toggle" />
-								<div className="modal backdrop-blur-md bg-black/10 ">
-									<div className="modal-box ">
+								<input type='checkbox' id='my-modal' className='modal-toggle' />
+								<div className='modal backdrop-blur-md bg-black/10 '>
+									<div className='modal-box '>
 										<label
-											htmlFor="my-modal"
-											className="btn btn-sm btn-circle absolute right-2 top-2"
+											htmlFor='my-modal'
+											className='absolute btn btn-sm btn-circle right-2 top-2'
 										>
 											✕
 										</label>
-										<h3 className="font-bold text-lg flex flex-col text-center">
+										<h3 className='flex flex-col text-lg font-bold text-center'>
 											<svg
-												xmlns="http://www.w3.org/2000/svg"
-												className="icon icon-tabler icon-tabler-alert-circle mx-auto stroke-error w-48"
-												viewBox="0 0 24 24"
-												strokeWidth="1.5"
-												stroke="currentColor"
-												fill="none"
-												strokeLinecap="round"
-												strokeLinejoin="round"
+												xmlns='http://www.w3.org/2000/svg'
+												className='w-48 mx-auto icon icon-tabler icon-tabler-alert-circle stroke-error'
+												viewBox='0 0 24 24'
+												strokeWidth='1.5'
+												stroke='currentColor'
+												fill='none'
+												strokeLinecap='round'
+												strokeLinejoin='round'
 											>
 												<path
-													stroke="none"
-													d="M0 0h24v24H0z"
-													fill="none"
+													stroke='none'
+													d='M0 0h24v24H0z'
+													fill='none'
 												></path>
-												<circle cx="12" cy="12" r="9"></circle>
-												<line x1="12" y1="8" x2="12" y2="12"></line>
-												<line x1="12" y1="16" x2="12.01" y2="16"></line>
+												<circle cx='12' cy='12' r='9'></circle>
+												<line x1='12' y1='8' x2='12' y2='12'></line>
+												<line x1='12' y1='16' x2='12.01' y2='16'></line>
 											</svg>
 											Are you sure?
 										</h3>
-										<p className="py-4 text-base">
+										<p className='py-4 text-base'>
 											Do you really want to delete this account? Once you delete
 											your account your data is no longer saved in our database.
 											To confirm your account deletion, please type{' '}
-											<code className="badge">
+											<code className='badge'>
 												[{name && name ? name : <></>}]
 											</code>
 										</p>
@@ -755,16 +755,16 @@ function EditPage() {
 										</div> */}
 										<form onSubmit={onDeleteRequest}>
 											<input
-												type="text"
-												placeholder="Type here"
-												name="deleteMessage"
+												type='text'
+												placeholder='Type here'
+												name='deleteMessage'
 												onChange={onDelete}
-												className="input input-bordered w-full max-w-xs"
+												className='w-full max-w-xs input input-bordered'
 											/>
-											<div className="modal-action">
+											<div className='modal-action'>
 												<button
-													className="btn btn-outline btn-error"
-													type="submit"
+													className='btn btn-outline btn-error'
+													type='submit'
 												>
 													Confirm
 												</button>
@@ -774,30 +774,30 @@ function EditPage() {
 								</div>
 							</>
 						) : (
-							<div className="alert alert-info shadow-lg">
+							<div className='shadow-lg alert alert-info'>
 								<div>
 									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										fill="none"
-										viewBox="0 0 24 24"
-										className="stroke-current flex-shrink-0 w-6 h-6"
+										xmlns='http://www.w3.org/2000/svg'
+										fill='none'
+										viewBox='0 0 24 24'
+										className='flex-shrink-0 w-6 h-6 stroke-current'
 									>
 										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											strokeWidth="2"
-											d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth='2'
+											d='M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
 										></path>
 									</svg>
 									<span>User cannot find, Please refresh and continue.</span>
 								</div>
-								<div className="flex-none">
+								<div className='flex-none'>
 									<button
 										onClick={() => {
 											setShowMessage(false);
 											window.location.reload();
 										}}
-										className="btn btn-sm"
+										className='btn btn-sm'
 									>
 										X
 									</button>

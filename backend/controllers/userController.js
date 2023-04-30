@@ -251,6 +251,31 @@ const approveUser = asyncHandler(async (req, res) => {
 		});
 });
 
+//change role
+const updateRole = asyncHandler(async (req, res) => {
+	let userId = req.params.id;
+
+	const { role, confirmDate, approvedBy } = req.body;
+
+	const updateStudent = {
+		role,
+		confirmDate,
+		approvedBy,
+	};
+	// await sendEmail(email, 'Verification completed', approveMail);
+
+	await Student.findByIdAndUpdate(userId, updateStudent)
+		.then(() => {
+			res.status(200).send({ status: 'User updated', id: req.params.id });
+		})
+		.catch((err) => {
+			console.log(err);
+			res
+				.status(500)
+				.send({ status: 'Error with updating data', error: err.message });
+		});
+});
+
 //delete user
 const deleteUser = asyncHandler(async (req, res) => {
 	let user_Id = req.params.id;
@@ -266,14 +291,16 @@ const deleteUser = asyncHandler(async (req, res) => {
 				.send({ status: 'Error with deleting data', error: err.message });
 		});
 
-	await Project.deleteMany({userId:user_Id}).then(()=>{
-		res.status(200).send({status:"Projects Deleted", id: req.params.id });
-	}).catch((err)=>{
-		console.log(err);
-		res
+	await Project.deleteMany({ userId: user_Id })
+		.then(() => {
+			res.status(200).send({ status: 'Projects Deleted', id: req.params.id });
+		})
+		.catch((err) => {
+			console.log(err);
+			res
 				.status(500)
 				.send({ status: 'Error with deleting data', error: err.message });
-	});
+		});
 });
 
 // @desc    Get user data
@@ -299,4 +326,5 @@ module.exports = {
 	deleteUser,
 	getUserById,
 	approveUser,
+	updateRole,
 };
