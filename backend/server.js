@@ -1,28 +1,23 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv = require('dotenv');
-require('dotenv').config();
-const app = express();
 const path = require('path');
+const envPath = path.resolve(__dirname, '..', '.env')
+dotenv.config({path:envPath});
+const app = express();
+const connectDatabase = require("./config/dbconfig");
 const PORT = process.env.PORT || 8060;
+
 
 app.use(cors());
 app.use(bodyParser.json());
 
-const URL = process.env.MONGODB_URL;
-
-mongoose.connect(URL);
-
-const connection = mongoose.connection;
-
-connection.once('open', () => {
-	console.log('MongoDB connection success');
-});
+connectDatabase();
 
 // const studentRouter = require('./routes/students');
 const studentRouter = require('./routes/authRoutes');
+const { env } = require('process');
 app.use('/student', studentRouter);
 
 //servr frontend
