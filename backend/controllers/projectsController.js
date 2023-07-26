@@ -1,4 +1,3 @@
-const router = require('express').Router();
 const Project = require('../models/Project');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');

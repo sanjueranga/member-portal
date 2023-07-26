@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler');
 const Student = require('../models/Student');
@@ -6,6 +5,7 @@ const sendEmail = require('../util/sendEmail');
 const registerMail = require('../util/registerMail');
 const approveMail = require('../util/approveMail');
 const Project = require('../models/Project');
+const sendToken = require('../util/jwtToken');
 
 // @desc    Register new user
 // @route   POST /api/users
@@ -53,7 +53,7 @@ const registerUser = asyncHandler(async (req, res) => {
 		userStatus,
 		contactNumber,
 		profilePic,
-		applyDate,
+		applyDate:Date.now(),
 		gender,
 	});
 
@@ -63,7 +63,7 @@ const registerUser = asyncHandler(async (req, res) => {
 			name: user.name,
 			email: user.email,
 			date: user.applyDate,
-			token: generateToken(user._id),
+			
 		});
 		await sendEmail(
 			's17391@sci.pdn.ac.lk',
@@ -88,13 +88,13 @@ const loginUser = asyncHandler(async (req, res) => {
 	const user = await Student.findOne({ email });
 
 	if (user && (await bcrypt.compare(password, user.password))) {
+		sendToken(user, 200, res)
 		res.json({
 			_id: user.id,
 			name: user.name,
 			email: user.email,
 			profilePic: user.profilePic,
 			role: user.role,
-			token: generateToken(user._id),
 			applyDate: user.applyDate,
 			confirmDate: user.confirmDate,
 			firstName: user.firstName,
@@ -310,12 +310,17 @@ const getUser = asyncHandler(async (req, res) => {
 	res.status(200).json(req.user);
 });
 
-// Generate JWT
-const generateToken = (id) => {
-	return jwt.sign({ id }, process.env.JWT_SECRET, {
-		expiresIn: '30d',
-	});
-};
+const logout = asyncHandler(async (req, res, next) => {
+    res.cookie('token', null, {
+        expires: new Date(Date.now()),
+        httpOnly: true
+    })
+
+    res.status(200).json({
+        success: true,
+        message: 'Logged out'
+    })
+});
 
 module.exports = {
 	registerUser,
@@ -327,4 +332,6 @@ module.exports = {
 	getUserById,
 	approveUser,
 	updateRole,
+	logout,
+	
 };
