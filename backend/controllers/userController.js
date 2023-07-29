@@ -451,6 +451,7 @@ const deleteUserAdmin = asyncHandler(async (req, res) => {
 // @route   GET /api/users/me
 // @access  Private
 const getUser = asyncHandler(async (req, res) => {
+	
 	res.status(200).json(req.user);
 });
 

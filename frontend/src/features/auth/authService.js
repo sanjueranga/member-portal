@@ -1,6 +1,7 @@
 import axios from 'axios';
-
 const API_LOGIN = '/student/login/';
+
+
 
 //login user
 const login = async (userData) => {
@@ -16,7 +17,8 @@ const login = async (userData) => {
       const response = await axios.post(API_LOGIN, userData, config);
 
       if (response.data) {
-        localStorage.setItem('user', JSON.stringify(response.data));
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+
       }
 
       return response.data;
@@ -26,6 +28,7 @@ const login = async (userData) => {
 //logout user
 const logout = async () => {
   await axios.get('/student/logout');
+ 
 };
 
 const authService = {

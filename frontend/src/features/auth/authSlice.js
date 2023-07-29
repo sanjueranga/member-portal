@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import Cookies from 'js-cookie'; // Import js-cookie library
 import authService from './authService';
 
 //get user from localstorage
@@ -7,7 +6,7 @@ import authService from './authService';
 
 
 const initialState = {
-	user: null,
+	user:null,
 	isError: false,
 	isSuccess: false,
 	isLoading: false,
@@ -59,6 +58,8 @@ export const authSlice = createSlice({
 			state.isSuccess = false;
 			state.isError = false;
 			state.message = '';
+		},setInitialUserData: (state, action) => {
+			state.user = action.payload;
 		},
 		
 	},
@@ -84,6 +85,6 @@ export const authSlice = createSlice({
 			});
 	},
 });
-// export const {setInitialUserData} = authSlice.actions;
+export const {setInitialUserData} = authSlice.actions;
 export const { reset } = authSlice.actions;
 export default authSlice.reducer;
