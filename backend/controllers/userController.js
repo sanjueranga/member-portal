@@ -169,8 +169,61 @@ const getUserById = asyncHandler(async (req, res) => {
 //   });
 
 const updateUser = asyncHandler(async (req, res) => {
-	const { id } = req.params;
-	const updateStudent = req.body;
+	const {
+		email,
+		role,
+		password,
+		name,
+		profilePic,
+		applyDate,
+		confirmDate,
+		firstName,
+		lastName,
+		contactNumber,
+		regNo,
+		gender,
+		userStatus,
+		birthDate,
+		facebook,
+		twitter,
+		linkdin,
+		instagram,
+		github,
+		cv,
+		approvedBy,
+		headline,
+		about,
+		website,
+		skills,
+	} = req.body;
+
+	const updateStudent = {
+		email,
+		role,
+		password,
+		name,
+		profilePic,
+		applyDate,
+		confirmDate,
+		firstName,
+		lastName,
+		contactNumber,
+		regNo,
+		gender,
+		userStatus,
+		birthDate,
+		facebook,
+		twitter,
+		linkdin,
+		instagram,
+		github,
+		cv,
+		approvedBy,
+		headline,
+		about,
+		website,
+		skills,
+	};
   
 	try {
 	  // Update the tokenVersion field in the database
