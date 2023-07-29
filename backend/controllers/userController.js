@@ -169,6 +169,93 @@ const getUserById = asyncHandler(async (req, res) => {
 //   });
 
 const updateUser = asyncHandler(async (req, res) => {
+	let id = req.user.id;
+	const {
+		email,
+		role,
+		password,
+		name,
+		profilePic,
+		applyDate,
+		confirmDate,
+		firstName,
+		lastName,
+		contactNumber,
+		regNo,
+		gender,
+		userStatus,
+		birthDate,
+		facebook,
+		twitter,
+		linkdin,
+		instagram,
+		github,
+		cv,
+		approvedBy,
+		headline,
+		about,
+		website,
+		skills,
+	} = req.body;
+
+	const updateStudent = {
+		email,
+		role,
+		password,
+		name,
+		profilePic,
+		applyDate,
+		confirmDate,
+		firstName,
+		lastName,
+		contactNumber,
+		regNo,
+		gender,
+		userStatus,
+		birthDate,
+		facebook,
+		twitter,
+		linkdin,
+		instagram,
+		github,
+		cv,
+		approvedBy,
+		headline,
+		about,
+		website,
+		skills,
+	};
+  
+	try {
+	  // Update the tokenVersion field in the database
+	  updateStudent.tokenVersion = (updateStudent.tokenVersion || 0) + 1;
+  
+	  await Student.findByIdAndUpdate(id, updateStudent);
+  
+	  // Get the updated user from the database
+	  const updatedUser = await Student.findById(id);
+  
+	  // Generate a new JWT token with the updated tokenVersion
+	  const newJwtToken = updatedUser.getJwtToken();
+  
+	  // Clear the user's cookies by setting the token cookie to null and setting its expiration to a past date
+	  res.cookie('token', null, {
+		expires: new Date(Date.now()),
+		httpOnly: true
+	  });
+  
+	  res.status(200).send({ status: 'User updated', id, newJwtToken });
+	} catch (err) {
+	  console.log(err);
+	  res.status(500).send({ status: 'Error with updating data', error: err.message });
+	}
+  });
+
+
+  //Admin update user
+
+  const updateUserAdmin = asyncHandler(async (req, res) => {
+	const id = req.params.id
 	const {
 		email,
 		role,
@@ -316,6 +403,33 @@ const updateRole = asyncHandler(async (req, res) => {
 
 //delete user
 const deleteUser = asyncHandler(async (req, res) => {
+	let user_Id = req.user.id;
+	const user = await Student.findOne({ user_Id });
+	await Student.findByIdAndDelete(user_Id)
+		.then(() => {
+			res.status(200).send({ status: 'User Deleted', id: req.params.id });
+		})
+		.catch((err) => {
+			console.log(err);
+			res
+				.status(500)
+				.send({ status: 'Error with deleting data', error: err.message });
+		});
+
+	await Project.deleteMany({ userId: user_Id })
+		.then(() => {
+			res.status(200).send({ status: 'Projects Deleted', id: req.params.id });
+		})
+		.catch((err) => {
+			console.log(err);
+			res
+				.status(500)
+				.send({ status: 'Error with deleting data', error: err.message });
+		});
+});
+
+//delete user Admin
+const deleteUserAdmin = asyncHandler(async (req, res) => {
 	let user_Id = req.params.id;
 	const user = await Student.findOne({ user_Id });
 	await Student.findByIdAndDelete(user_Id)
@@ -340,6 +454,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 				.send({ status: 'Error with deleting data', error: err.message });
 		});
 });
+
 
 // @desc    Get user data
 // @route   GET /api/users/me
@@ -371,5 +486,7 @@ module.exports = {
 	approveUser,
 	updateRole,
 	logout,
+	updateUserAdmin,
+	deleteUserAdmin,
 	
 };
