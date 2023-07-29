@@ -200,6 +200,36 @@ function EditPage() {
 				email,
 				password,
 			};
+			if (!email.match(/^[a-zA-Z0-9._%+-]+@(?!gmail.com)(?!yahoo.com)(?!hotmail.com)(?!yahoo.co.in)(?!aol.com)(?!live.com)(?!outlook.com)[a-zA-Z0-9_-]+.[a-zA-Z0-9-.]{2,61}$/)) {
+				toast.error('Please enter a valid university email', { theme: 'dark' });
+			 } else if (!regNo.match(/^(S\/[A-Z]{2}\/\d{3}|S\d{5})$/i)) {
+				toast.error('Please enter a valid registration number (ex: S/XX/XXX)', { theme: 'dark' });
+			  } else if (!contactNumber.match(/^\+94 \d{9}$/)) {
+				toast.error('Please enter a valid contact number (ex: +94 XXXXXXXX)', { theme: 'dark' });
+			  } else {
+				const role = 'Member';
+				const userStatus = false;
+				const currentdate = new Date();
+				const applyDate = `${currentdate.getDate()}/${currentdate.getMonth() + 1}/${currentdate.getFullYear()} | ${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()}`;
+		  
+				const userData = {
+				  name,
+				  email,
+				  role,
+				  password,
+				  regNo,
+				  userStatus,
+				  profilePic,
+				  applyDate,
+				  contactNumber,
+				  gender,
+				};
+				setShowMessage(true);
+				toast.success('Your account details have been saved.', {
+					theme: 'dark',
+				});
+		  
+			  }
 
 			dispatch(updateAll(userData));
 			dispatch(getMe());
@@ -207,12 +237,9 @@ function EditPage() {
 				toast.error('Request is not completed. Try again later!', {
 					theme: 'dark',
 				});
-			} else {
-				setShowMessage(true);
-				toast.success('Your account details have been saved.', {
-					theme: 'dark',
-				});
-			}
+			} 
+				
+			
 		}
 	};
 

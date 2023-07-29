@@ -11,6 +11,7 @@ const sendToken = require('../util/jwtToken');
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
+	
 	const {
 		email,
 		name,
@@ -71,6 +72,8 @@ const registerUser = asyncHandler(async (req, res) => {
 			`New user request from ${name}`
 		);
 		await sendEmail(email, 'Welcome to CSUP Member portal', registerMail);
+		
+		res.redirect('/login')
 	} else {
 		res.status(400);
 		throw new Error('Invalid user data');
@@ -456,7 +459,7 @@ const logout = asyncHandler(async (req, res, next) => {
         expires: new Date(Date.now()),
         httpOnly: true
     })
-
+	console.log("logged out")
     res.status(200).json({
         success: true,
         message: 'Logged out'

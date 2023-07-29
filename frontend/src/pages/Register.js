@@ -1,118 +1,124 @@
-import logo from '../img/logo.png';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { register } from '../features/users/userSlice';
 import axios from 'axios';
 
+import logo from '../img/logo.png';
+
 function Register() {
-	const [formData, setFormData] = useState({
-		name: '',
-		email: '',
-		password: '',
-		password2: '',
-		regNo: '',
-		userStatus: false,
-		profilePic: '',
-		contactNumber: '',
-		gender: '',
-	});
-	let regex =
-		'^[a-zA-Z0-9._%+-]+@(?!gmail.com)(?!yahoo.com)(?!hotmail.com)(?!yahoo.co.in)(?!aol.com)(?!live.com)(?!outlook.com)[a-zA-Z0-9_-]+.[a-zA-Z0-9-.]{2,61}$';
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    password2: '',
+    regNo: '',
+    userStatus: false,
+    profilePic: '',
+    contactNumber: '',
+    gender: '',
+  });
 
-	const API_URL = '/student';
-	const [users, setUsers] = useState({});
+  const API_URL = '/student';
+  const [users, setUsers] = useState([]);
 
-	useEffect(() => {
-		async function getUsers() {
-			const response = await axios.get(API_URL);
-			setUsers(response.data);
-		}
-		getUsers();
-	}, []);
+  useEffect(() => {
+    async function getUsers() {
+      const response = await axios.get(API_URL);
+      setUsers(response.data);
+    }
+    getUsers();
+  }, []);
 
-	const {
-		name,
-		email,
-		password,
-		password2,
-		regNo,
-		profilePic,
-		contactNumber,
-		gender,
-	} = formData;
+  const {
+    name,
+    email,
+    password,
+    password2,
+    regNo,
+    profilePic,
+    contactNumber,
+    gender,
+  } = formData;
 
-	const onChange = (e) => {
-		setFormData((prevState) => ({
-			...prevState,
-			[e.target.name]: e.target.value,
-		}));
-	};
-	// console.log(email, regex.test(email));
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
-	const [userExists, setUserExists] = useState(false);
-	function checkUser() {
-		users.map((user) => {
-			if (user.email === email) {
-				setUserExists(true);
-			}
-		});
-	}
-	const [imageLoading, setImageLoading] = useState(true);
-	const [imageIsValid, setImageIsValid] = useState(null);
-	useEffect(() => {
-		fetch(profilePic).then((res) => {
-			setImageIsValid(res.status === 200);
-			setImageLoading(false);
-		});
-	}, [profilePic, imageIsValid]);
-	const [registered, setRegistered] = useState(false);
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-	const onSubmit = (e) => {
-		e.preventDefault();
-		checkUser();
-		if (password !== password2) {
-			toast.error('Password do not match', { theme: 'dark' });
-		} else if (userExists) {
-			toast.error('User Already exists', { theme: 'dark' });
-		} else if (!email.match(regex)) {
-			toast.error('Please enter valid university email', { theme: 'dark' });
-		} else {
-			let role = 'Member';
-			let userStatus = false;
-			var currentdate = new Date();
-			var applyDate =
-				currentdate.getDate() +
-				'/' +
-				(currentdate.getMonth() + 1) +
-				'/' +
-				currentdate.getFullYear() +
-				' | ' +
-				currentdate.getHours() +
-				':' +
-				currentdate.getMinutes() +
-				':' +
-				currentdate.getSeconds();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [userExists, setUserExists] = useState(false);
 
-			const userData = {
-				name,
-				email,
-				role,
-				password,
-				regNo,
-				userStatus,
-				profilePic,
-				applyDate,
-				contactNumber,
-				gender,
-			};
+  function checkUser() {
+    users.forEach((user) => {
+      if (user.email === email) {
+        setUserExists(true);
+      }
+    });
+  }
 
-			dispatch(register(userData));
-			setRegistered(true);
-		}
-	};
+  useEffect(() => {
+    setUserExists(false);
+  }, [email]);
+
+  const [imageLoading, setImageLoading] = useState(true);
+  const [imageIsValid, setImageIsValid] = useState(null);
+
+  useEffect(() => {
+    if (profilePic) {
+      fetch(profilePic).then((res) => {
+        setImageIsValid(res.status === 200);
+        setImageLoading(false);
+      });
+    } else {
+      setImageLoading(false);
+    }
+  }, [profilePic]);
+
+  const [registered, setRegistered] = useState(false);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    checkUser();
+
+    if (password !== password2) {
+      toast.error('Passwords do not match', { theme: 'dark' });
+    } else if (userExists) {
+      toast.error('User already exists', { theme: 'dark' });
+    } else if (!email.match(/^[a-zA-Z0-9._%+-]+@(?!gmail.com)(?!yahoo.com)(?!hotmail.com)(?!yahoo.co.in)(?!aol.com)(?!live.com)(?!outlook.com)[a-zA-Z0-9_-]+.[a-zA-Z0-9-.]{2,61}$/)) {
+      toast.error('Please enter a valid university email', { theme: 'dark' });
+    } else if (!regNo.match(/^(S\/[A-Z]{2}\/\d{3}|S\d{5})$/i)) {
+      toast.error('Please enter a valid registration number (ex: S/XX/XXX)', { theme: 'dark' });
+    } else if (!contactNumber.match(/^\+94 \d{9}$/)) {
+      toast.error('Please enter a valid contact number (ex: +94 XXXXXXXX)', { theme: 'dark' });
+    } else {
+      const role = 'Member';
+      const userStatus = false;
+      const currentdate = new Date();
+      const applyDate = `${currentdate.getDate()}/${currentdate.getMonth() + 1}/${currentdate.getFullYear()} | ${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()}`;
+
+      const userData = {
+        name,
+        email,
+        role,
+        password,
+        regNo,
+        userStatus,
+        profilePic,
+        applyDate,
+        contactNumber,
+        gender,
+      };
+
+      dispatch(register(userData));
+      setRegistered(true);
+    }
+  };
+
 	if (registered) {
 		return (
 			<div className="alert alert-success shadow-lg w-[90%] m-auto mt-6 ">
@@ -399,7 +405,7 @@ function Register() {
 												onChange={onChange}
 												placeholder="URL of Your Profile Picture"
 												className="block w-full ml-5 px-4 py-3 rounded-md border bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900  border-gray-600 focus:border-sky-500 text-base outline-none text-gray-100 leading-8 transition-colors duration-200 ease-in-out"
-												required
+												
 											/>
 										</div>
 										<p className="mt-2 text-sm text-gray-400">
