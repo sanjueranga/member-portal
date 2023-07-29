@@ -14,8 +14,8 @@ const auth = require('./routes/authRoutes');
 const projects = require('./routes/projectRoutes');
 
 
-app.use('/api/v1', auth);
-app.use('/api/v1', projects);
+app.use('/', auth);
+app.use('/', projects);
 
 
 app.use(bodyParser.urlencoded({ extended: true }));

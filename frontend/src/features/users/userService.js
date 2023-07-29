@@ -33,6 +33,7 @@ const getUserById = async (id) => {
 	return response.data;
 };
 //getme
+//getme
 const getMe = async (token) => {
 	const config = {
 		headers: {
@@ -43,9 +44,10 @@ const getMe = async (token) => {
 			Authorization: `Bearer ${token}`,
 		},
 	};
-	const response = await axios.get(API_URL + 'user/', config);
+	const response = await axios.get('/user/', config);
 	return response.data;
 };
+
 
 //delete users
 const deleteUser = async (id) => {

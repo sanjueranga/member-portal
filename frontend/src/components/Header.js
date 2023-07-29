@@ -33,7 +33,7 @@ function Header({ setSearchName }) {
 	const [imageIsValid, setImageIsValid] = useState(null);
 	useEffect(() => {
 		if (user) {
-			dispatch(getMe(user.token));
+			dispatch(getMe());
 			if (user) {
 				fetch(user.profilePic).then((res) => {
 					setImageIsValid(res.status === 200);

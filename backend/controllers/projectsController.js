@@ -14,7 +14,7 @@ const createProject = asyncHandler(async (req, res) => {
 		throw new Error('Please add at title');
 	}
 
-	const newProject = await Project.create({
+	const  project = await Project.create({
 		userId,
 		email,
 		title,
@@ -23,6 +23,15 @@ const createProject = asyncHandler(async (req, res) => {
 		website,
 		tags,
 	});
+	if(project){
+		console.log("project created succesfully")
+		res.status(201).json({
+			_id: project.id,
+			name: project.title,
+			
+		});
+	}
+
 });
 
 // get all projects

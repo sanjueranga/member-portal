@@ -15,7 +15,7 @@ const {isAuthenticatedUser,authorizeRoles} = require('../middleware/auth');
 
 router.route('/project/create').post(isAuthenticatedUser, createProject);
 router.route('/project/update/:id').put(isAuthenticatedUser, updateProject);
-router.route('/project/delete/:id').delete(isAuthenticatedUser,authorizeRoles('Admin'), deletePoject);
+router.route('/project/delete/:id').delete(isAuthenticatedUser, deletePoject);
 router.route('/project/getAll/:id').get(getProjectByUserId);
 router.route('/project/get/:id').get(getProjectById);
 router.route('/project').get(getAllProjects);

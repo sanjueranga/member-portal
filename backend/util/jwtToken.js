@@ -3,24 +3,26 @@ const sendToken = (user, statusCode, res) => {
 
     // Create Jwt token
     const token = user.getJwtToken();
+    
+    // Convert user object to JSON string
+    const userJsonString = JSON.stringify(user);
 
     // Options for cookie
     const options = {
-        expires: new Date(
-            Date.now() + 7* 24 * 60 * 60 * 1000
-        ),
+        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
         httpOnly: true
     }
 
-
-    res.status(statusCode).cookie('token', token, options).json({
-        success: true,
-        token,
-        user
-    })
-  
-        
-    }
+    // Save token and user data in the cookie
+    res.status(statusCode)
+        .cookie('token', token, options)
+        .cookie('user', userJsonString, options)
+        .json({
+            success: true,
+            token,
+            user
+        });
+}
 
 
 

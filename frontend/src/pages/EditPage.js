@@ -15,7 +15,6 @@ import { logout, reset, login } from '../features/auth/authSlice';
 function EditPage() {
 	let { id } = useParams();
 	const { allUsers, CurrentUser } = useSelector((state) => state.user);
-
 	const [imageLoading, setImageLoading] = useState(true);
 	const [imageIsValid, setImageIsValid] = useState(null);
 	const [showMessage, setShowMessage] = useState(false);
@@ -52,7 +51,7 @@ function EditPage() {
 		// 	setProfileOwner(response.data);
 		// }
 		if (user) {
-			dispatch(getMe(user.token));
+			dispatch(getMe());
 			// console.log(CurrentUser);
 			setProfileOwner(CurrentUser);
 			setFormData({
@@ -173,7 +172,7 @@ function EditPage() {
 		e.preventDefault();
 		toast.error(e.target);
 
-		if (imageLoading || !imageIsValid) {
+		if (1===2) {
 			toast.error('Image URL is not valid!', { theme: 'dark' });
 		} else {
 			const userData = {
@@ -203,7 +202,7 @@ function EditPage() {
 			};
 
 			dispatch(updateAll(userData));
-			dispatch(getMe(user.token));
+			dispatch(getMe());
 			if (isSuccess) {
 				toast.error('Request is not completed. Try again later!', {
 					theme: 'dark',
@@ -431,7 +430,7 @@ function EditPage() {
 														onChange={onChange}
 														placeholder='URL of Your Profile Picture'
 														className='block w-full px-4 py-3 ml-5 text-base leading-8 text-gray-100 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-500'
-														required
+														
 													/>
 												</div>
 											</div>

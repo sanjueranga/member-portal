@@ -19,8 +19,9 @@ export default function Profile() {
 	const API_URL = '/student/get/';
 	const PROJECT_API = '/student/project/';
 
-	const { user } = useSelector((state) => state.auth);
+	const user = useSelector((state) => state.auth.user);
 	const [skills, setSkills] = useState([]);
+
 
 	const { isError, isSuccess, isLoading, profileUser } = useSelector(
 		(state) => state.user
@@ -34,7 +35,7 @@ export default function Profile() {
 	// get data from api
 	useEffect(() => {
 		async function getUsers() {
-			const userResponse = await axios.get(API_URL + id);
+			const userResponse = await axios.get(API_URL+id);
 			setProfileOwner(userResponse.data);
 		}
 

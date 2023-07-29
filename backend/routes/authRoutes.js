@@ -16,18 +16,18 @@ const {
 const {isAuthenticatedUser,authorizeRoles} = require('../middleware/auth');
 
 
-router.route('/users').get(getAll);
-router.route('/register').post(registerUser);
-router.route('/login').post(loginUser);
-router.route('/logout').get(logout);
+router.route('/student/').get(getAll); 
+router.route('/student/register').post(registerUser);
+router.route('/student/login').post(loginUser); 
+router.route('/student/logout').get(logout);
 
+router.route('/student/get/:id').get(getUserById);//
+router.route('/student/delete/:id').delete(isAuthenticatedUser,deleteUser);
+router.route('/student/update/role/:id').put(isAuthenticatedUser,authorizeRoles('Admin'),updateRole)
+router.route('/student/update/:id').put(isAuthenticatedUser,updateUser);
+router.route('/student/approve/:id').put(isAuthenticatedUser,authorizeRoles('Admin'), approveUser);
 
-router.route('/delete/:id').delete(isAuthenticatedUser,authorizeRoles('Admin'),deleteUser);
-router.route('/update/role/:id').put(isAuthenticatedUser,authorizeRoles('Admin'),updateRole)
-router.route('/update/:id').put(isAuthenticatedUser,authorizeRoles('Admin'),updateUser);
-router.route('/approve/:id').put(isAuthenticatedUser,authorizeRoles('Admin'), approveUser);
-router.route('/get/:id').get(getUserById);
-router.route('/user').get(getUser);
+router.route('/user/').get(isAuthenticatedUser,getUser);
 
 
 module.exports = router;

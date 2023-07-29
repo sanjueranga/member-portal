@@ -14,7 +14,7 @@ function Login() {
 		password: '',
 	});
 	const API_URL = '/student/';
-
+	
 	const [students, setStudents] = useState([]);
 	useEffect(() => {
 		async function getUsers() {
@@ -23,6 +23,8 @@ function Login() {
 		}
 		getUsers();
 	}, []);
+
+	
 
 	const { email, password } = formData;
 
@@ -33,7 +35,7 @@ function Login() {
 	const { user, isLoading, isError, isSuccess, message } = useSelector(
 		(state) => state.auth
 	);
-
+	
 	useEffect(() => {
 		if (isError) {
 			toast.error(message, { theme: 'dark' });
@@ -61,7 +63,7 @@ function Login() {
 			email,
 			password,
 		};
-
+		
 		students.map((item) => {
 			if (item.email === userData.email) {
 				loginUser = item.userStatus;

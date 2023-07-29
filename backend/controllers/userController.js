@@ -88,6 +88,7 @@ const loginUser = asyncHandler(async (req, res) => {
 	const user = await Student.findOne({ email });
 
 	if (user && (await bcrypt.compare(password, user.password))) {
+
 		sendToken(user, 200, res)
 		res.json({
 			_id: user.id,
@@ -132,8 +133,10 @@ const getAll = asyncHandler(async (req, res) => {
 			console.log(err);
 		});
 });
+
 const getUserById = asyncHandler(async (req, res) => {
 	let userId = req.params.id;
+	
 	const user = await Student.findById(userId);
 
 	res.status(200).json(user);
@@ -151,76 +154,52 @@ const getUserById = asyncHandler(async (req, res) => {
 });
 //update user
 
+
+// const updateUser = asyncHandler(async (req, res) => {
+// 	const { id } = req.params;
+// 	const updateStudent = req.body;
+  
+// 	try {
+// 	  await Student.findByIdAndUpdate(id, updateStudent);
+// 	  res.status(200).send({ status: 'User updated', id });
+// 	} catch (err) {
+// 	  console.log(err);
+// 	  res.status(500).send({ status: 'Error with updating data', error: err.message });
+// 	}
+//   });
+
 const updateUser = asyncHandler(async (req, res) => {
-	let userId = req.params.id;
+	const { id } = req.params;
+	const updateStudent = req.body;
+  
+	try {
+	  // Update the tokenVersion field in the database
+	  updateStudent.tokenVersion = (updateStudent.tokenVersion || 0) + 1;
+  
+	  await Student.findByIdAndUpdate(id, updateStudent);
+  
+	  // Get the updated user from the database
+	  const updatedUser = await Student.findById(id);
+  
+	  // Generate a new JWT token with the updated tokenVersion
+	  const newJwtToken = updatedUser.getJwtToken();
+  
+	  // Clear the user's cookies by setting the token cookie to null and setting its expiration to a past date
+	  res.cookie('token', null, {
+		expires: new Date(Date.now()),
+		httpOnly: true
+	  });
+  
+	  res.status(200).send({ status: 'User updated', id, newJwtToken });
+	} catch (err) {
+	  console.log(err);
+	  res.status(500).send({ status: 'Error with updating data', error: err.message });
+	}
+  });
+  
+  
+  
 
-	const {
-		email,
-		role,
-		password,
-		name,
-		profilePic,
-		applyDate,
-		confirmDate,
-		firstName,
-		lastName,
-		contactNumber,
-		regNo,
-		gender,
-		userStatus,
-		birthDate,
-		facebook,
-		twitter,
-		linkdin,
-		instagram,
-		github,
-		cv,
-		approvedBy,
-		headline,
-		about,
-		website,
-		skills,
-	} = req.body;
-
-	const updateStudent = {
-		email,
-		role,
-		password,
-		name,
-		profilePic,
-		applyDate,
-		confirmDate,
-		firstName,
-		lastName,
-		contactNumber,
-		regNo,
-		gender,
-		userStatus,
-		birthDate,
-		facebook,
-		twitter,
-		linkdin,
-		instagram,
-		github,
-		cv,
-		approvedBy,
-		headline,
-		about,
-		website,
-		skills,
-	};
-
-	await Student.findByIdAndUpdate(userId, updateStudent)
-		.then(() => {
-			res.status(200).send({ status: 'User updated', id: req.params.id });
-		})
-		.catch((err) => {
-			console.log(err);
-			res
-				.status(500)
-				.send({ status: 'Error with updating data', error: err.message });
-		});
-});
 
 //approve user
 const approveUser = asyncHandler(async (req, res) => {
@@ -253,28 +232,34 @@ const approveUser = asyncHandler(async (req, res) => {
 
 //change role
 const updateRole = asyncHandler(async (req, res) => {
-	let userId = req.params.id;
-
+	const userId = req.params.id;
 	const { role, confirmDate, approvedBy } = req.body;
-
+  
 	const updateStudent = {
-		role,
-		confirmDate,
-		approvedBy,
+	  role,
+	  confirmDate,
+	  approvedBy,
 	};
-	// await sendEmail(email, 'Verification completed', approveMail);
-
-	await Student.findByIdAndUpdate(userId, updateStudent)
-		.then(() => {
-			res.status(200).send({ status: 'User updated', id: req.params.id });
-		})
-		.catch((err) => {
-			console.log(err);
-			res
-				.status(500)
-				.send({ status: 'Error with updating data', error: err.message });
-		});
-});
+  
+	try {
+	  // Update the tokenVersion field in the database
+	  updateStudent.tokenVersion = (updateStudent.tokenVersion || 0) + 1;
+  
+	  await Student.findByIdAndUpdate(userId, updateStudent);
+	  const updatedUser = await Student.findById(userId);
+	  const newJwtToken = updatedUser.getJwtToken();
+	  res.cookie('token', null, {
+		expires: new Date(Date.now()),
+		httpOnly: true
+	  });
+  
+	  res.status(200).send({ status: 'User role updated', id: userId, newJwtToken });
+	} catch (err) {
+	  console.log(err);
+	  res.status(500).send({ status: 'Error with updating data', error: err.message });
+	}
+  });
+  
 
 //delete user
 const deleteUser = asyncHandler(async (req, res) => {

@@ -16,16 +16,28 @@ import EditPage from './pages/EditPage';
 import Backdrop from './img/backdrop.avif';
 import Footer from './components/Footer';
 import { getMe } from './features/users/userSlice';
+import { setInitialUserData } from './features/auth/authSlice';
+import { setInitialCUserData } from './features/users/userSlice';
 
 function App() {
 	const [searchName, setSearchName] = useState();
 	const dispatch = useDispatch();
 	const { user } = useSelector((state) => state.auth);
+	const {currentUser} = useSelector((state)=>state.user);
 	useEffect(() => {
-		if (user) {
-			dispatch(getMe(user.token));
-		}
-	}, [user]);
+		// Fetch the user data from the backend
+		fetch('/user')
+			.then((response) => response.json())
+			.then((data) => {
+				
+				dispatch(setInitialUserData(data));
+				dispatch(setInitialCUserData(data))
+
+			})
+			.catch((error) => {
+				console.error('Error fetching user data:', error);
+			});
+	}, [dispatch]);
 
 
 	return (

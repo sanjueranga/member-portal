@@ -88,10 +88,19 @@ const studentSchema = new Schema({
 		type: String,
 	},
 });
+// studentSchema.methods.getJwtToken = function () {
+//     return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+//         expiresIn: '30d'
+//     });
+// }
+
 studentSchema.methods.getJwtToken = function () {
-    return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-        expiresIn: '30d'
-    });
-}
+	// Update the payload to include the tokenVersion field
+	return jwt.sign(
+	  { id: this._id, tokenVersion: this.tokenVersion }, // Add tokenVersion to the payload
+	  process.env.JWT_SECRET,
+	  { expiresIn: '30d' }
+	);
+  };
 const Student = mongoose.model('Student', studentSchema);
 module.exports = Student;

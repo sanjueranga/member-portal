@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = '/student/project/';
+const API_URL = '/project/';
 
 const config = {
 	headers: {
