@@ -226,30 +226,18 @@ const updateUser = asyncHandler(async (req, res) => {
 		skills,
 	};
   
-	try {
-	  // Update the tokenVersion field in the database
-	  updateStudent.tokenVersion = (updateStudent.tokenVersion || 0) + 1;
-  
-	  await Student.findByIdAndUpdate(id, updateStudent);
-  
-	  // Get the updated user from the database
-	  const updatedUser = await Student.findById(id);
-  
-	  // Generate a new JWT token with the updated tokenVersion
-	  const newJwtToken = updatedUser.getJwtToken();
-  
-	  // Clear the user's cookies by setting the token cookie to null and setting its expiration to a past date
-	  res.cookie('token', null, {
-		expires: new Date(Date.now()),
-		httpOnly: true
-	  });
-  
-	  res.status(200).send({ status: 'User updated', id, newJwtToken });
-	} catch (err) {
-	  console.log(err);
-	  res.status(500).send({ status: 'Error with updating data', error: err.message });
-	}
-  });
+	await Student.findByIdAndUpdate(userId, updateStudent)
+		.then(() => {
+			res.status(200).send({ status: 'User updated', id: req.params.id });
+		})
+		.catch((err) => {
+			console.log(err);
+			res
+				.status(500)
+				.send({ status: 'Error with updating data', error: err.message });
+		});
+});
+ 
 
 
   //Admin update user
