@@ -23,9 +23,9 @@ router.route('/student/logout').get(logout);
 
 router.route('/student/get/:id').get(getUserById);//
 router.route('/student/delete/:id').delete(isAuthenticatedUser,deleteUser);
-router.route('/student/update/role/:id').put(isAuthenticatedUser,authorizeRoles('Admin'),updateRole)
+router.route('/student/update/role/:id').put(isAuthenticatedUser,updateRole)
 router.route('/student/update/:id').put(isAuthenticatedUser,updateUser);
-router.route('/student/approve/:id').put(isAuthenticatedUser,authorizeRoles('Admin'), approveUser);
+router.route('/student/approve/:id').put(isAuthenticatedUser, approveUser);
 
 router.route('/user/').get(isAuthenticatedUser,getUser);
 
