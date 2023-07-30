@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_LOGIN = '/student/login/';
+const API_LOGIN = process.env.API_URL+'/student/login/';
 
 
 
@@ -35,7 +35,7 @@ const getUser = async (token) => {
 			Authorization: `Bearer ${token}`,
 		},
 	};
-	const response = await axios.get('/user/', config);
+	const response = await axios.get(process.env.API_LINK+'/user/', config);
 	return response.data;
 };
 

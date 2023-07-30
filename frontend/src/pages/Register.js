@@ -20,7 +20,7 @@ function Register() {
     gender: '',
   });
 
-  const API_URL = '/student';
+  const API_URL = process.env.API_LINK+'/student';
   const [users, setUsers] = useState([]);
 
   useEffect(() => {

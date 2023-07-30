@@ -6,7 +6,7 @@ import CountUp from 'react-countup';
 function UserStat() {
 	const { allUsers } = useSelector((state) => state.user);
 
-	const API_URL = '/student/';
+	const API_URL = process.env.API_LINK+'/student/';
 
 	const [students, setStudents] = useState([]);
 	useEffect(() => {

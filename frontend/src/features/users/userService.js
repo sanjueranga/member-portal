@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = '/student/';
+const API_URL = process.env.API_LINK+'/student/';
 
 //create new user
 const register = async (userData) => {
@@ -45,7 +45,7 @@ const getMe = async (token) => {
 			Authorization: `Bearer ${token}`,
 		},
 	};
-	const response = await axios.get('/user/', config);
+	const response = await axios.get(process.env.API_LINK+'/user/', config);
 	return response.data;
 };
 

@@ -25,7 +25,7 @@ function EditPage() {
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const API_URL = '/student/get/';
+	// const API_URL = '/student/get/';
 	useEffect(() => {
 		if (!isError) {
 			console.log(message);

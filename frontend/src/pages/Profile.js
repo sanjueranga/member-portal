@@ -16,7 +16,7 @@ import ProjectTab from '../components/ProjectTab';
 
 export default function Profile() {
 	let { id } = useParams();
-	const API_URL = '/student/get/';
+	const API_URL = process.env.API_LINK+'/student/get/';
 	const PROJECT_API = '/student/project/';
 
 	const user = useSelector((state) => state.auth.user);
