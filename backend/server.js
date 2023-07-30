@@ -1,9 +1,9 @@
 const app = require("./app")
 const express = require("express");
-const dotenv = require('dotenv');
-const path = require('path');
-const envPath = path.resolve(__dirname, '..', '.env')
-dotenv.config({path:envPath});
+// const dotenv = require('dotenv');
+// const path = require('path');
+// const envPath = path.resolve(__dirname, '..', '.env')
+// dotenv.config({path:envPath});
 
 const connectDatabase = require("./config/dbconfig");
 const PORT = process.env.PORT || 8060;
