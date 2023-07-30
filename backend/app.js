@@ -8,7 +8,7 @@ const cors = require('cors');
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin:["http:localhost:3000","https://member-portal-api.onrender.com"],
+    origin:["http:localhost:3000","https://member-portal.onrender.com"],
 }));
 
 //Import all routes
