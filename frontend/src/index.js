@@ -7,6 +7,10 @@ import { store } from './app/store';
 import {disableReactDevTools} from '@fvilers/disable-react-devtools';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+const dotenv = require('dotenv');
+const path = require('path');
+const envPath = path.resolve(__dirname, '..', '.env')
+dotenv.config({path:envPath});
 if(process.env.NODE==='production') disableReactDevTools();
 
 root.render(
