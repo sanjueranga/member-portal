@@ -91,9 +91,10 @@ function Register() {
       toast.error('User already exists', { theme: 'dark' });
     } else if (!email.match(/^[a-zA-Z0-9._%+-]+@(?!gmail.com)(?!yahoo.com)(?!hotmail.com)(?!yahoo.co.in)(?!aol.com)(?!live.com)(?!outlook.com)[a-zA-Z0-9_-]+.[a-zA-Z0-9-.]{2,61}$/)) {
       toast.error('Please enter a valid university email', { theme: 'dark' });
-    } else if (!regNo.match(/^(S\/[A-Z]{2}\/\d{3}|S\d{5})$/i)) {
-      toast.error('Please enter a valid registration number (ex: S/XX/XXX)', { theme: 'dark' });
-    } else if (!contactNumber.match(/^\+94 \d{9}$/)) {
+	}else if (!regNo.match(/^(S\/[A-Z\d]{2}\/\d{3}|S\d{5})$/i)) {
+		toast.error('Please enter a valid registration number (ex: S/XX/XXX or SXXXXX)', { theme: 'dark' });
+	  }
+	else if (!contactNumber.match(/^\+94\d{9}$/)) {
       toast.error('Please enter a valid contact number (ex: +94 XXXXXXXX)', { theme: 'dark' });
     } else {
       const role = 'Member';
