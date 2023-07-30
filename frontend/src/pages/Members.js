@@ -5,8 +5,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import UserCardPending from '../components/UserCardPending';
 import { getUsers } from '../features/users/userSlice';
 function Members({ searchName }) {
-	// const API_URL = process.env.API_LINK+'/student/';
-	const API_URL = "https://member-portal-api.onrender.com/student/";
+	const API_URL =process.env.API_LINK+'/student/'
+	
+	
 	const dispatch = useDispatch();
 
 	const { allUsers, isLoading, isError, message, isSuccess } = useSelector(
