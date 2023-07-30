@@ -4,7 +4,11 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
+import {disableReactDevTools} from '@fvilers/disable-react-devtools';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+if(process.env.NODE==='production') disableReactDevTools();
+
 root.render(
 	<React.StrictMode>
 		<Provider store={store}>
