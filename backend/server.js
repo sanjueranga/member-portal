@@ -7,7 +7,6 @@ dotenv.config({path:envPath});
 const connectDatabase = require("./config/dbconfig");
 const PORT = process.env.PORT || 8060;
 
-
 connectDatabase();
 
 
