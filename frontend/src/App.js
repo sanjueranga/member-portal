@@ -16,7 +16,7 @@ import EditPage from './pages/EditPage';
 import Backdrop from './img/backdrop.avif';
 import Footer from './components/Footer';
 import { getMe } from './features/users/userSlice';
-import { setInitialUserData } from './features/auth/authSlice';
+
 
 
 function App() {
@@ -30,23 +30,8 @@ function App() {
 		if (user) {
 			dispatch(getMe(user.token));
 		  }
-	  
-		  fetch('/user')
-			.then((response) => response.json())
-			.then((data) => {
-			  // Log the user data
-			  console.log('User data fetched from backend:', data);
-	  
-			  // Dispatch an action to set the user data in the Redux store
-			  dispatch(setInitialUserData(data));
-			})
-			.catch((error) => {
-			  console.error('Error fetching user data:', error);
-			});
-	  
-		}, [user, dispatch]);
+		}, [user]);
 
-	
 
 	return (
 		<>

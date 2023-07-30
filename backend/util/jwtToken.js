@@ -9,18 +9,18 @@ const sendToken = (user, statusCode, res) => {
 
     // Options for cookie
     const options = {
-        expires: new Date(Date.now() + 12 * 60 * 60 * 1000),
+        expires: new Date(Date.now() + 60* 60 * 1000),
         httpOnly: true
     }
 
-    // Save token and user data in the cookie
+    // // Save token and user data in the cookie
     res.status(statusCode)
         .cookie('token', token, options)
-        .cookie('user', userJsonString, options)
+        // .cookie('user', userJsonString, options)
         .json({
             success: true,
             token,
-            user
+            // user
         });
 }
 

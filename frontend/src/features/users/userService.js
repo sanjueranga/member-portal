@@ -1,6 +1,6 @@
 import axios from 'axios';
-
 const API_URL = '/student/';
+
 //create new user
 const register = async (userData) => {
 	const response = await axios.post(API_URL + 'register/', userData);
@@ -33,8 +33,9 @@ const getUserById = async (id) => {
 	return response.data;
 };
 //getme
-//getme
+
 const getMe = async (token) => {
+	
 	const config = {
 		headers: {
 			'Access-Control-Allow-Credentials': true,

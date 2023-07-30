@@ -460,6 +460,11 @@ const logout = asyncHandler(async (req, res, next) => {
         expires: new Date(Date.now()),
         httpOnly: true
     })
+	res.cookie('user', null, {
+        expires: new Date(Date.now()),
+        httpOnly: true
+    });
+
 	console.log("logged out")
     res.status(200).json({
         success: true,
