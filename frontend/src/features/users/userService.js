@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = 'https://member-portal-api.onrender.com/student/';
+const API_URL = '/student/';
 
 //create new user
 const register = async (userData) => {
