@@ -205,7 +205,7 @@ function EditPage() {
 			} else if (!regNo.match(/^(S\/[A-Z\d]{2}\/\d{3}|S\d{5})$/i)) {
 				toast.error('Please enter a valid registration number (ex: S/XX/XXX or SXXXXX)', { theme: 'dark' });
 			}
-			else if (!contactNumber.match(/^(94\d{9})?$/)) {
+			else if (!contactNumber.match(/^(?:\+94\d{9})?$/)) {
 				toast.error('Please enter a valid contact number (ex: 94XXXXXXXX)', { theme: 'dark' });
 			} else {
 				const role = 'Member';
@@ -504,7 +504,7 @@ function EditPage() {
 															onChange={onChange}
 															placeholder='Enter Contact Number'
 															className='block w-full py-3 pl-16 pr-4 text-base leading-8 text-gray-100 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-500'
-															required
+
 														/>
 													</div>
 												</div>
