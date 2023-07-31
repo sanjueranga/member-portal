@@ -12,7 +12,6 @@ const sendToken = (user, statusCode, res) => {
         expires: new Date(Date.now()  + 12* 60* 60 * 1000),
         httpOnly: true
     }
-    console.log(user);
     // // Save token and user data in the cookie
     res.status(statusCode)
         .cookie('token', token, options)

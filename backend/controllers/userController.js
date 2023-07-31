@@ -91,7 +91,7 @@ const loginUser = asyncHandler(async (req, res) => {
 	const user = await Student.findOne({ email });
 
 	if (user && (await bcrypt.compare(password, user.password))) {
-		
+
 		sendToken(user, 200, res)
 		console.log("login successfull")
 	} else {
@@ -425,8 +425,11 @@ const deleteUserAdmin = asyncHandler(async (req, res) => {
 // @route   GET /api/users/me
 // @access  Private
 const getUser = asyncHandler(async (req, res) => {
-	console.log("req user : "+req.user)
-	res.status(200).json(req.user);
+	const data = req.cookies.user ? req.cookies.user : req.user;
+	console.log(data);
+	res.status(200).json(data);
+	
+	
 });
 
 const logout = asyncHandler(async (req, res, next) => {
