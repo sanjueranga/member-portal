@@ -453,13 +453,8 @@ const deleteUserAdmin = asyncHandler(async (req, res) => {
 // @route   GET /api/users/me
 // @access  Private
 const getUser = asyncHandler(async (req, res) => {
-	if(req.cookies.user){
-		console.log("req user : "+req.cookies.user)
-		res.status(200).json(req.cookies.user);
-	}
 	console.log("req user : "+req.user)
 	res.status(200).json(req.user);
-	
 });
 
 const logout = asyncHandler(async (req, res, next) => {
