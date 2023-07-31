@@ -52,13 +52,9 @@ const getMe = async (token) => {
 
 
 //delete users
-const deleteUser = async (id,token) => {
-	const config = {
-		headers: {
-			Authorization: `Bearer ${token}`,
-		},
-	};
-	const response = await axios.delete(API_URL + 'delete/' + id,config);
+const deleteUser = async (id) => {
+	
+	const response = await axios.delete(API_URL + 'delete/' + id);
 	return response.data;
 };
 

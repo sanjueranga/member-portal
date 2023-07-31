@@ -87,9 +87,9 @@ export const getMe = createAsyncThunk('user/getMe', async (token, thunkAPI) => {
 //delete user
 export const deleteUser = createAsyncThunk(
 	'user/delete',
-	async (id,token, thunkAPI) => {
+	async (id, thunkAPI) => {
 		try {
-			return await userService.deleteUser(id,token);
+			return await userService.deleteUser(id);
 		} catch (error) {
 			const message =
 				(error.response &&

@@ -102,7 +102,7 @@ function TableRow({ item, count }) {
 			<th>
 				<button
 					onClick={() => {
-						dispatch(deleteUser(item._id,user.token));
+						dispatch(deleteUser(item._id));
 						toast.warning('Request from ' + item.name + ' is Decline', {
 							theme: 'dark',
 						});

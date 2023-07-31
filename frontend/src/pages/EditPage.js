@@ -156,7 +156,7 @@ function EditPage() {
 		if (deleteUserName === user.name) {
 			dispatch(logout());
 			dispatch(reset());
-			dispatch(deleteUser(user._id,user.token));
+			dispatch(deleteUser(user._id));
 			navigate('/');
 		} else {
 			if (deleteUserName !== null) {
