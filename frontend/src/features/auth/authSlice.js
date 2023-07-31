@@ -3,10 +3,10 @@ import authService from './authService';
 
 //get user from localstorage
 
-let localUser = localStorage.getItem('user');
+// let localUser = localStorage.getItem('user');
 
 const initialState = {
-	user:localUser,
+	user:null,
 	isError: false,
 	isSuccess: false,
 	isLoading: false,

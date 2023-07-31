@@ -41,7 +41,7 @@ export default function Profile() {
 			const userResponse = await axios.get(API_URL+id);
 			setProfileOwner(userResponse.data);
 		}
-		dispatch(getMe)
+		
 		getUsers();
 		dispatch(getUserById(id));
 		dispatch(getProjectByUserId(id));
@@ -57,7 +57,7 @@ export default function Profile() {
 	
 	const [addProject, setAddProject] = useState(true);
 	useEffect(() => {
-		dispatch(getMe)
+		dispatch(getMe(user.token))
 		fetch(profileOwner.profilePic).then((res) => {
 			setImageIsValid(res.status === 200);
 			setImageLoading(false);

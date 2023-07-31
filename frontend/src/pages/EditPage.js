@@ -233,7 +233,7 @@ function EditPage() {
 			  }
 
 			dispatch(updateAll(userData));
-			dispatch(getMe());
+			dispatch(getMe(user.token));
 			if (isSuccess) {
 				toast.error('Request is not completed. Try again later!', {
 					theme: 'dark',

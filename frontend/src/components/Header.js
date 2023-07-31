@@ -35,7 +35,7 @@ function Header({ setSearchName }) {
 	useEffect(() => {
 		dispatch(getUser())
 		if (user) {
-			dispatch(getMe());
+			dispatch(getMe(user.token));
 			
 			if (user) {
 				fetch(user.profilePic).then((res) => {
