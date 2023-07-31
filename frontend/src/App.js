@@ -16,7 +16,7 @@ import EditPage from './pages/EditPage';
 import Backdrop from './img/backdrop.avif';
 import Footer from './components/Footer';
 import { getMe } from './features/users/userSlice';
-import { setInitialUserData } from './features/auth/authSlice';
+
 
 
 function App() {
@@ -27,23 +27,12 @@ function App() {
 
 	
 	
-	useEffect(() => {
-		// Fetch the user data from the backend
-		fetch('/user')
-		  .then((response) => response.json())
-		  .then((data) => {
-			dispatch(setInitialUserData(data));
-		  })
-		  .catch((error) => {
-			console.error('Error fetching user data:', error);
-		  });
-	  }, [dispatch]);
 	
 	  useEffect(() => {
 		if (user) {
 		  dispatch(getMe(user.token));
 		}
-	  }, [user, dispatch]);
+	  }, [user]);
 	
 	  // Rest of your component code...
 	

@@ -44,7 +44,7 @@ const getUser = async (token) => {
 //logout user
 const logout = async () => {
   await axios.get(API_LINK+'/student/logout');
- 
+  localStorage.removeItem('user');
 };
 
 const authService = {

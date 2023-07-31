@@ -75,6 +75,7 @@ function Login() {
 
 		if (loginUser) {
 			dispatch(login(userData));
+			dispatch(getMe())
 			// console.log('user logged');
 		} else {
 			setLoginStatus(false);
