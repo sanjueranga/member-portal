@@ -1,6 +1,6 @@
 import axios from 'axios';
 const API_LINK = process.env.REACT_APP_API_URL;
-const API_LOGIN =API_LINK+'/student/login/';
+
 
 
 
@@ -15,7 +15,7 @@ const login = async (userData) => {
         },
       };
 
-      const response = await axios.post(API_LOGIN, userData, config);
+      const response = await axios.post(API_LINK+'/student/login', userData, config);
 
       if (response.data) {
         localStorage.setItem('user', JSON.stringify(response.data.user));
@@ -43,7 +43,7 @@ const getUser = async (token) => {
 
 //logout user
 const logout = async () => {
-  await axios.get('/student/logout');
+  await axios.get(API_LINK+'/student/logout');
  
 };
 
