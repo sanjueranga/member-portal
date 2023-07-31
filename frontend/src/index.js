@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import {disableReactDevTools} from '@fvilers/disable-react-devtools';
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
+export const API_LINK = process.env.REACT_APP_API_URL;
 
 if(process.env.NODE==='production') disableReactDevTools();
 

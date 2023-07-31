@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { login, reset } from '../features/auth/authSlice';
 import Spinner from '../components/Spinner';
-
+import { API_LINK } from '../index';
 import axios from 'axios';
 
 function Login() {
@@ -13,7 +13,7 @@ function Login() {
 		email: '',
 		password: '',
 	});
-	const API_URL = process.env.API_LINK+'/student/';
+	const API_URL = API_LINK+'/student/';
 	
 	const [students, setStudents] = useState([]);
 	useEffect(() => {

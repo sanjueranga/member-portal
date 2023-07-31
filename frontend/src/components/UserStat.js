@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import CountUp from 'react-countup';
+import {API_LINK} from '../index';
 
 function UserStat() {
 	const { allUsers } = useSelector((state) => state.user);
 
-	const API_URL = process.env.API_LINK+'/student/';
+	const API_URL = API_LINK+'/student/';
 
 	const [students, setStudents] = useState([]);
 	useEffect(() => {

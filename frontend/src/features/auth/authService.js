@@ -1,5 +1,6 @@
 import axios from 'axios';
-const API_LOGIN = process.env.API_URL+'/student/login/';
+const API_LINK = process.env.REACT_APP_API_URL;
+const API_LOGIN =API_LINK+'/student/login/';
 
 
 
@@ -35,7 +36,7 @@ const getUser = async (token) => {
 			Authorization: `Bearer ${token}`,
 		},
 	};
-	const response = await axios.get(process.env.API_LINK+'/user/', config);
+	const response = await axios.get(API_LINK+'/user/', config);
 	return response.data;
 };
 

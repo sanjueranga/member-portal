@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
+import { API_LINK } from '../index';
 
 import {
 	updateAll,
@@ -16,7 +17,7 @@ import ProjectTab from '../components/ProjectTab';
 
 export default function Profile() {
 	let { id } = useParams();
-	const API_URL = process.env.API_LINK+'/student/get/';
+	const API_URL = API_LINK+'/student/get/';
 	const PROJECT_API = '/student/project/';
 
 	const user = useSelector((state) => state.auth.user);

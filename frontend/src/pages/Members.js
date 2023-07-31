@@ -4,8 +4,9 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import UserCardPending from '../components/UserCardPending';
 import { getUsers } from '../features/users/userSlice';
+import { API_LINK } from '../index';
 function Members({ searchName }) {
-	const API_URL =process.env.API_LINK+'/student/'
+	const API_URL =API_LINK+'/student/'
 	
 	
 	const dispatch = useDispatch();

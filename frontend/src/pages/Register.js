@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { register } from '../features/users/userSlice';
 import axios from 'axios';
-
+import { API_LINK } from '../index';
 import logo from '../img/logo.png';
 
 function Register() {
@@ -20,7 +20,7 @@ function Register() {
     gender: '',
   });
 
-  const API_URL = process.env.API_LINK+'/student';
+  const API_URL = API_LINK+'/student';
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
