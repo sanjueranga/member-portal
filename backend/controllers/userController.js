@@ -84,48 +84,77 @@ const registerUser = asyncHandler(async (req, res) => {
 // @route   POST /api/users/login
 // @access  Public
 const loginUser = asyncHandler(async (req, res) => {
-	res.header('Access-Control-Allow-Origin', '*');
-	const { email, password } = req.body;
+    res.header('Access-Control-Allow-Origin', '*');
+    const { email, password } = req.body;
 
-	// Check for user email
-	const user = await Student.findOne({ email });
+    // Check for user email
+    const user = await Student.findOne({ email });
 
-	if (user && (await bcrypt.compare(password, user.password))) {
+    if (user && (await bcrypt.compare(password, user.password))) {
+        // Assuming you have access to the `cookie` method on the `res` object
 
-		res.json({
-			_id: user.id,
-			name: user.name,
-			email: user.email,
-			profilePic: user.profilePic,
-			role: user.role,
-			applyDate: user.applyDate,
-			confirmDate: user.confirmDate,
-			firstName: user.firstName,
-			lastName: user.lastName,
-			contactNumber: user.contactNumber,
-			regNo: user.regNo,
-			gender: user.gender,
-			userStatus: user.userStatus,
-			birthDate: user.birthDate,
-			facebook: user.facebook,
-			twitter: user.twitter,
-			linkdin: user.linkdin,
-			instagram: user.instagram,
-			github: user.github,
-			cv: user.cv,
-			approvedBy: user.approvedBy,
-			headline: user.headline,
-			about: user.about,
-			website: user.website,
-			skills: user.skills,
-		});
-		console.log("login successfull")
-		
-	} else {
-		res.status(400);
-		throw new Error('Invalid credentials');
-	}
+        // Save the user data to cookies
+        res.cookie('userData', {
+            _id: user.id,
+            name: user.name,
+            email: user.email,
+            profilePic: user.profilePic,
+            role: user.role,
+            applyDate: user.applyDate,
+            confirmDate: user.confirmDate,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            contactNumber: user.contactNumber,
+            regNo: user.regNo,
+            gender: user.gender,
+            userStatus: user.userStatus,
+            birthDate: user.birthDate,
+            facebook: user.facebook,
+            twitter: user.twitter,
+            linkdin: user.linkdin,
+            instagram: user.instagram,
+            github: user.github,
+            cv: user.cv,
+            approvedBy: user.approvedBy,
+            headline: user.headline,
+            about: user.about,
+            website: user.website,
+            skills: user.skills,
+        }, { maxAge: 86400000, httpOnly: true }); // 'maxAge' defines the cookie's expiration time, here set to 24 hours (in milliseconds)
+
+        res.json({
+            _id: user.id,
+            name: user.name,
+            email: user.email,
+            profilePic: user.profilePic,
+            role: user.role,
+            applyDate: user.applyDate,
+            confirmDate: user.confirmDate,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            contactNumber: user.contactNumber,
+            regNo: user.regNo,
+            gender: user.gender,
+            userStatus: user.userStatus,
+            birthDate: user.birthDate,
+            facebook: user.facebook,
+            twitter: user.twitter,
+            linkdin: user.linkdin,
+            instagram: user.instagram,
+            github: user.github,
+            cv: user.cv,
+            approvedBy: user.approvedBy,
+            headline: user.headline,
+            about: user.about,
+            website: user.website,
+            skills: user.skills,
+        });
+    } else {
+        res.status(401); // Unauthorized status code
+        throw new Error('Invalid email or password');
+    }
 });
+
 
 //show all users
 const getAll = asyncHandler(async (req, res) => {
@@ -452,9 +481,22 @@ const deleteUserAdmin = asyncHandler(async (req, res) => {
 // @route   GET /api/users/me
 // @access  Private
 const getUser = asyncHandler(async (req, res) => {
-	console.log("req user : "+req.user)
-	res.status(200).json(req.user);
+	if (userData) {
+        // User data found in cookies
+        res.json(userData);
+    } else {
+		res.status(200).json(req.user);
+      
+    }
+	
 });
+
+
+
+
+
+
+
 
 const logout = asyncHandler(async (req, res, next) => {
     res.cookie('token', null, {
