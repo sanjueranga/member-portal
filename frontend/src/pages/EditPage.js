@@ -51,7 +51,7 @@ function EditPage() {
 		// 	setProfileOwner(response.data);
 		// }
 		if (user) {
-			
+
 			// console.log(CurrentUser);
 			setProfileOwner(CurrentUser);
 			setFormData({
@@ -169,10 +169,10 @@ function EditPage() {
 		}
 	};
 	const onSubmit = (e) => {
-		e.preventDefault();
+
 		toast.error(e.target);
 
-		if (1===2) {
+		if (1 === 2) {
 			toast.error('Image URL is not valid!', { theme: 'dark' });
 		} else {
 			const userData = {
@@ -202,35 +202,35 @@ function EditPage() {
 			};
 			if (!email.match(/^[a-zA-Z0-9._%+-]+@(?!gmail.com)(?!yahoo.com)(?!hotmail.com)(?!yahoo.co.in)(?!aol.com)(?!live.com)(?!outlook.com)[a-zA-Z0-9_-]+.[a-zA-Z0-9-.]{2,61}$/)) {
 				toast.error('Please enter a valid university email', { theme: 'dark' });
-			 } else if (!regNo.match(/^(S\/[A-Z\d]{2}\/\d{3}|S\d{5})$/i)) {
+			} else if (!regNo.match(/^(S\/[A-Z\d]{2}\/\d{3}|S\d{5})$/i)) {
 				toast.error('Please enter a valid registration number (ex: S/XX/XXX or SXXXXX)', { theme: 'dark' });
-			  }
-				 else if (!contactNumber.match(/^\+94\d{9}$/)) {
+			}
+			else if (!contactNumber.match(/^\+94\d{9}$/)) {
 				toast.error('Please enter a valid contact number (ex: +94XXXXXXXX)', { theme: 'dark' });
-			  } else {
+			} else {
 				const role = 'Member';
 				const userStatus = false;
 				const currentdate = new Date();
 				const applyDate = `${currentdate.getDate()}/${currentdate.getMonth() + 1}/${currentdate.getFullYear()} | ${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()}`;
-		  
+
 				const userData = {
-				  name,
-				  email,
-				  role,
-				  password,
-				  regNo,
-				  userStatus,
-				  profilePic,
-				  applyDate,
-				  contactNumber,
-				  gender,
+					name,
+					email,
+					role,
+					password,
+					regNo,
+					userStatus,
+					profilePic,
+					applyDate,
+					contactNumber,
+					gender,
 				};
 				setShowMessage(true);
 				toast.success('Your account details have been saved.', {
 					theme: 'dark',
 				});
-		  
-			  }
+
+			}
 
 			dispatch(updateAll(userData));
 			dispatch(getMe(user.token));
@@ -238,9 +238,9 @@ function EditPage() {
 				toast.error('Request is not completed. Try again later!', {
 					theme: 'dark',
 				});
-			} 
-				
-			
+			}
+
+
 		}
 	};
 
@@ -458,7 +458,7 @@ function EditPage() {
 														onChange={onChange}
 														placeholder='URL of Your Profile Picture'
 														className='block w-full px-4 py-3 ml-5 text-base leading-8 text-gray-100 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-500'
-														
+
 													/>
 												</div>
 											</div>
@@ -521,7 +521,7 @@ function EditPage() {
 															className='w-full pl-16 pr-4 text-base leading-8 transition-colors duration-200 ease-in-out rounded-md  select select-bordered focus:border-sky-500'
 														>
 															{(user && gender === 'Male') ||
-															(user && gender === 'Female') ? (
+																(user && gender === 'Female') ? (
 																<option
 																	defaultValue={gender}
 																	disabled
