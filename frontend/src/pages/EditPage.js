@@ -169,7 +169,7 @@ function EditPage() {
 		}
 	};
 	const onSubmit = (e) => {
-
+		e.preventDefault
 		toast.error(e.target);
 
 		if (1 === 2) {

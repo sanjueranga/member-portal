@@ -1,7 +1,7 @@
 import axios from 'axios';
 const API_LINK = process.env.REACT_APP_API_URL;
-const API_URL =API_LINK+'/student/'
-
+const API_URL = API_LINK + '/student/'
+const apiKey = process.env.REACT_APP_CSUP_API_KEY;
 //create new user
 const register = async (userData) => {
 	const response = await axios.post(API_URL + 'register/', userData);
@@ -36,7 +36,7 @@ const getUserById = async (id) => {
 //getme
 
 const getMe = async (token) => {
-	
+
 	const config = {
 		headers: {
 			'Access-Control-Allow-Credentials': true,
@@ -46,15 +46,17 @@ const getMe = async (token) => {
 			Authorization: `Bearer ${token}`,
 		},
 	};
-	const response = await axios.get(API_URL+'user/', config);
+	const response = await axios.get(API_URL + 'user/', config);
 	return response.data;
 };
 
 
 //delete users
 const deleteUser = async (id) => {
-	
-	const response = await axios.delete(API_URL + 'delete/' + id);
+	const headers = {
+		'csup-api-key': apiKey
+	}
+	const response = await axios.delete(API_URL + 'delete/' + id, { headers });
 	return response.data;
 };
 
