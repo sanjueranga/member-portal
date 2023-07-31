@@ -170,7 +170,11 @@ function EditPage() {
 	};
 	const onSubmit = (e) => {
 		e.preventDefault()
-		
+
+
+		if (1 === 2) {
+			toast.error('Image URL is not valid!', { theme: 'dark' });
+		} else {
 			const userData = {
 				_id,
 				name,
@@ -226,7 +230,7 @@ function EditPage() {
 					theme: 'dark',
 				});
 
-			
+			}
 
 			dispatch(updateAll(userData));
 			dispatch(getMe(user.token));
@@ -495,7 +499,7 @@ function EditPage() {
 															type='text'
 															name='contactNumber'
 															id='contactNumber'
-															value={contactNumber}
+															value={'+' + contactNumber}
 															autoComplete='phone'
 															onChange={onChange}
 															placeholder='Enter Contact Number'
