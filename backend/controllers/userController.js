@@ -91,35 +91,7 @@ const loginUser = asyncHandler(async (req, res) => {
 	const user = await Student.findOne({ email });
 
 	if (user && (await bcrypt.compare(password, user.password))) {
-
-
-		res.json({
-			_id: user.id,
-			name: user.name,
-			email: user.email,
-			profilePic: user.profilePic,
-			role: user.role,
-			applyDate: user.applyDate,
-			confirmDate: user.confirmDate,
-			firstName: user.firstName,
-			lastName: user.lastName,
-			contactNumber: user.contactNumber,
-			regNo: user.regNo,
-			gender: user.gender,
-			userStatus: user.userStatus,
-			birthDate: user.birthDate,
-			facebook: user.facebook,
-			twitter: user.twitter,
-			linkdin: user.linkdin,
-			instagram: user.instagram,
-			github: user.github,
-			cv: user.cv,
-			approvedBy: user.approvedBy,
-			headline: user.headline,
-			about: user.about,
-			website: user.website,
-			skills: user.skills,
-		});
+		
 		sendToken(user, 200, res)
 		console.log("login successfull")
 	} else {
