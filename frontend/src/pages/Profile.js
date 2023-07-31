@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { API_LINK } from '../index';
+
 
 import {
 	updateAll,
@@ -14,6 +14,7 @@ import male from '../img/male.png';
 import female from '../img/female.png';
 import { create, getProjectByUserId } from '../features/projects/projectSlice';
 import ProjectTab from '../components/ProjectTab';
+const API_LINK = process.env.REACT_APP_API_URL;
 
 export default function Profile() {
 	let { id } = useParams();

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import HeroImage from '../img/hero image.png';
+const API_LINK = process.env.REACT_APP_API_URL +"ladfa";
 function Home() {
 	return (
 		<div>
@@ -10,7 +11,7 @@ function Home() {
 						<h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">
 							Find your Associate |
 							<br className="hidden lg:inline-block" />
-							Make your dream job comes true
+							{API_LINK} Make your dream job comes true
 						</h1>
 						{/* <p className="mb-8 leading-relaxed ">
 							

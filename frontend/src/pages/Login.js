@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { login, reset } from '../features/auth/authSlice';
 import Spinner from '../components/Spinner';
-import { API_LINK } from '../index';
 import axios from 'axios';
+const API_LINK = process.env.REACT_APP_API_URL;
 
 function Login() {
 	const [formData, setFormData] = useState({
