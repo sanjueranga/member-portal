@@ -205,8 +205,8 @@ function EditPage() {
 			} else if (!regNo.match(/^(S\/[A-Z\d]{2}\/\d{3}|S\d{5})$/i)) {
 				toast.error('Please enter a valid registration number (ex: S/XX/XXX or SXXXXX)', { theme: 'dark' });
 			}
-			else if (!contactNumber.match(/^\+94\d{9}$/)) {
-				toast.error('Please enter a valid contact number (ex: +94XXXXXXXX)', { theme: 'dark' });
+			else if (!contactNumber.match(/^\94\d{9}$/)) {
+				toast.error('Please enter a valid contact number (ex: 94XXXXXXXX)', { theme: 'dark' });
 			} else {
 				const role = 'Member';
 				const userStatus = false;
