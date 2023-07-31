@@ -499,7 +499,7 @@ function EditPage() {
 															type='text'
 															name='contactNumber'
 															id='contactNumber'
-															value={'+' + contactNumber}
+
 															autoComplete='phone'
 															onChange={onChange}
 															placeholder='Enter Contact Number'
