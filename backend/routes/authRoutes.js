@@ -32,7 +32,7 @@ router.post('/project/create', createProject);
 router.delete('/delete/:id', deleteUser);
 router.delete('/project/delete/:id', deletePoject);
 
-router.put('/update', updateUser);
+router.put('/update/:id', updateUser);
 router.put('/approve/:id', approveUser);
 router.put('/project/update/:id', updateProject);
 router.put('/update/role/:id', updateRole);
