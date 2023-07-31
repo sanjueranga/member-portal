@@ -28,7 +28,7 @@ router.route('/student/delete/').delete(isAuthenticatedUser,deleteUser);
 router.route('/student/update/role/:id').put(isAuthenticatedUser,updateRole)
 
 
-router.route('/user').get(getUser);
+router.route('/user').get(isAuthenticatedUser,getUser);
 
 
 router.route('/student/update/:id').put(isAuthenticatedUser,authorizeRoles('Admin'),updateUserAdmin);

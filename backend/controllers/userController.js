@@ -5,7 +5,7 @@ const sendEmail = require('../util/sendEmail');
 const registerMail = require('../util/registerMail');
 const approveMail = require('../util/approveMail');
 const Project = require('../models/Project');
-const sendToken = require('../util/jwtToken');
+
 
 // @desc    Register new user
 // @route   POST /api/users
@@ -92,8 +92,34 @@ const loginUser = asyncHandler(async (req, res) => {
 
 	if (user && (await bcrypt.compare(password, user.password))) {
 
-		sendToken(user, 200, res)
-		console.log("login successfull")
+		res.json({
+			_id: user.id,
+			name: user.name,
+			email: user.email,
+			profilePic: user.profilePic,
+			role: user.role,
+			applyDate: user.applyDate,
+			confirmDate: user.confirmDate,
+			firstName: user.firstName,
+			lastName: user.lastName,
+			contactNumber: user.contactNumber,
+			regNo: user.regNo,
+			gender: user.gender,
+			userStatus: user.userStatus,
+			birthDate: user.birthDate,
+			facebook: user.facebook,
+			twitter: user.twitter,
+			linkdin: user.linkdin,
+			instagram: user.instagram,
+			github: user.github,
+			cv: user.cv,
+			approvedBy: user.approvedBy,
+			headline: user.headline,
+			about: user.about,
+			website: user.website,
+			skills: user.skills,
+		});
+		
 	} else {
 		res.status(400);
 		throw new Error('Invalid credentials');
@@ -425,11 +451,8 @@ const deleteUserAdmin = asyncHandler(async (req, res) => {
 // @route   GET /api/users/me
 // @access  Private
 const getUser = asyncHandler(async (req, res) => {
-	const data = req.cookies.user ? req.cookies.user : req.user;
-	console.log(data);
-	res.status(200).json(data);
-	
-	
+	console.log("req user : "+req.user)
+	res.status(200).json(req.user);
 });
 
 const logout = asyncHandler(async (req, res, next) => {

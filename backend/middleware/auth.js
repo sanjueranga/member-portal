@@ -1,23 +1,39 @@
 const User = require('../models/Student')
-
 const jwt = require("jsonwebtoken");
 const ErrorHandler = require("../util/errorHandler");
+const asyncHandler = require('express-async-handler');
 
 
 // Checks if user is authenticated or not
-exports.isAuthenticatedUser = async (req, res, next) => {
-
-    const { token } = req.cookies.token
-
-    if (!token) {
-        return next(new ErrorHandler('Login first to access this resource.', 401))
+exports.isAuthenticatedUser= asyncHandler(async (req, res, next) => {
+    let token;
+  
+    if (
+      req.headers.authorization &&
+      req.headers.authorization.startsWith('Bearer')
+    ) {
+      try {
+        // Get token from header
+        token = req.headers.authorization.split(' ')[1];
+  
+        // Verify the token
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  
+        // Get user from the token
+        req.user = await Student.findById(decoded.id).select('-password');
+  
+        next();
+      } catch (error) {
+        console.log(error);
+        return next(new ErrorHandler('Not Authorized', 401));
+      }
     }
-
-    const decoded = jwt.verify(token, process.env.JWT_SECRET)
-    req.user = await User.findById(decoded.id);
-
-    next()
-}
+  
+    if (!token) {
+      return next(new ErrorHandler('Not Authorized, No Token', 401));
+    }
+  });
+  
 
 // Handling users roles
 exports.authorizeRoles = (...roles) => {
