@@ -32,7 +32,7 @@ function Header({ setSearchName }) {
 	const [imageLoading, setImageLoading] = useState(true);
 	const [imageIsValid, setImageIsValid] = useState(null);
 	useEffect(() => {
-		dispatch(getUser())
+		
 		if (user) {
 			dispatch(getMe());
 			
