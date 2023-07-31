@@ -27,15 +27,15 @@ router.get('/', getAll);
 router.post('/register', registerUser);
 router.post('/login', loginUser);
 
-router.post('/project/create', createProject);
+router.post('/project/create', protect,createProject);
 
-router.delete('/delete/:id', deleteUser);
-router.delete('/project/delete/:id', deletePoject);
+router.delete('/delete',protect, deleteUser);
+router.delete('/project/delete/:id',protect, deletePoject);
 
-router.put('/update/:id', updateUser);
-router.put('/approve/:id', approveUser);
-router.put('/project/update/:id', updateProject);
-router.put('/update/role/:id', updateRole);
+router.put('/update',protect, updateUser);
+router.put('/approve/:id',protect, approveUser);
+router.put('/project/update/:id',protect, updateProject);
+router.put('/update/role/:id', protect,updateRole);
 
 router.get('/get/:id', getUserById);
 router.get('/user',protect, getUser);
