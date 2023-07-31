@@ -3,7 +3,7 @@ import authService from './authService';
 import Cookies from 'js-cookie';
 
 //get user from localstorage
-let  userData = JSON.parse(Cookies.get('user'));
+let  userData = Cookies.get('user');
 // let localUser = localStorage.getItem('user');
 
 const initialState = {

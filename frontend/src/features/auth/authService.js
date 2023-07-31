@@ -20,7 +20,7 @@ const login = async (userData) => {
 
       if (response.data) {
         localStorage.setItem('user', JSON.stringify(response.data.user));
-        Cookies.set('user', JSON.stringify(response.data.user) , { expires: 1 });
+        Cookies.set('user', response.data.user , { expires: 1 });
 
       }
 
