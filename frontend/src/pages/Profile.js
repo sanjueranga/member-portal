@@ -7,6 +7,7 @@ import {
 	updateAll,
 	getUserById,
 	updateRole,
+	getMe,
 } from '../features/users/userSlice';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
@@ -40,7 +41,7 @@ export default function Profile() {
 			const userResponse = await axios.get(API_URL+id);
 			setProfileOwner(userResponse.data);
 		}
-
+		dispatch(getMe)
 		getUsers();
 		dispatch(getUserById(id));
 		dispatch(getProjectByUserId(id));
@@ -53,8 +54,10 @@ export default function Profile() {
 
 	const [imageLoading, setImageLoading] = useState(true);
 	const [imageIsValid, setImageIsValid] = useState(null);
+	
 	const [addProject, setAddProject] = useState(true);
 	useEffect(() => {
+		dispatch(getMe)
 		fetch(profileOwner.profilePic).then((res) => {
 			setImageIsValid(res.status === 200);
 			setImageLoading(false);
