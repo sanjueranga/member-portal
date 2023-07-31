@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
-const jwt = require("jsonwebtoken");
 
 const Schema = mongoose.Schema;
 
-const studentSchema = new Schema({
+const studentShema = new Schema({
 	email: {
 		type: String,
 		required: true,
@@ -88,19 +87,6 @@ const studentSchema = new Schema({
 		type: String,
 	},
 });
-// studentSchema.methods.getJwtToken = function () {
-//     return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-//         expiresIn: '30d'
-//     });
-// }
 
-studentSchema.methods.getJwtToken = function () {
-	// Update the payload to include the tokenVersion field
-	return jwt.sign(
-	  { id: this._id, tokenVersion: this.tokenVersion }, // Add tokenVersion to the payload
-	  process.env.JWT_SECRET,
-	  { expiresIn: '30d' }
-	);
-  };
-const Student = mongoose.model('Student', studentSchema);
+const Student = mongoose.model('Student', studentShema);
 module.exports = Student;

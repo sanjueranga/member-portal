@@ -5,16 +5,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { login, reset } from '../features/auth/authSlice';
 import Spinner from '../components/Spinner';
+
 import axios from 'axios';
 const API_LINK = process.env.REACT_APP_API_URL;
-
 function Login() {
 	const [formData, setFormData] = useState({
 		email: '',
 		password: '',
 	});
 	const API_URL = API_LINK+'/student/';
-	
+
 	const [students, setStudents] = useState([]);
 	useEffect(() => {
 		async function getUsers() {
@@ -23,8 +23,6 @@ function Login() {
 		}
 		getUsers();
 	}, []);
-
-	
 
 	const { email, password } = formData;
 
@@ -35,7 +33,7 @@ function Login() {
 	const { user, isLoading, isError, isSuccess, message } = useSelector(
 		(state) => state.auth
 	);
-	
+
 	useEffect(() => {
 		if (isError) {
 			toast.error(message, { theme: 'dark' });
@@ -63,7 +61,7 @@ function Login() {
 			email,
 			password,
 		};
-		
+
 		students.map((item) => {
 			if (item.email === userData.email) {
 				loginUser = item.userStatus;

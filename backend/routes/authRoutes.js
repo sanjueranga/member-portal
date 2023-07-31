@@ -10,30 +10,38 @@ const {
 	getUserById,
 	approveUser,
 	updateRole,
-	logout,
-	updateUserAdmin,
-	deleteUserAdmin
 } = require('../controllers/userController');
 
-const {isAuthenticatedUser,authorizeRoles} = require('../middleware/auth');
+const {
+	createProject,
+	getProjectByUserId,
+	getAllProjects,
+	deletePoject,
+	updateProject,
+	getProjectById,
+} = require('../controllers/projectsController');
 
+const protect = require('../middleware/authMiddleware');
 
-router.route('/student/').get(getAll); 
-router.route('/student/register').post(registerUser);
-router.route('/student/login').post(loginUser); 
-router.route('/student/logout').get(logout);
+router.get('/', getAll);
+router.post('/register', registerUser);
+router.post('/login', loginUser);
 
-router.route('/student/get/:id').get(getUserById);//
-router.route('/student/delete/').delete(isAuthenticatedUser,deleteUser);
-router.route('/student/update/role/:id').put(isAuthenticatedUser,updateRole)
+router.post('/project/create', createProject);
 
+router.delete('/delete/:id', deleteUser);
+router.delete('/project/delete/:id', deletePoject);
 
-router.route('/user').get(isAuthenticatedUser,getUser);
+router.put('/update/:id', updateUser);
+router.put('/approve/:id', approveUser);
+router.put('/project/update/:id', updateProject);
+router.put('/update/role/:id', updateRole);
 
+router.get('/get/:id', getUserById);
+router.get('/user', protect, getUser);
+router.get('/project/getAll/:id', getProjectByUserId);
+router.get('/project/get/:id', getProjectById);
 
-router.route('/student/update/:id').put(isAuthenticatedUser,authorizeRoles('Admin'),updateUserAdmin);
-router.route('/student/delete/:id').delete(isAuthenticatedUser,authorizeRoles('Admin'),deleteUserAdmin);
-router.route('/student/update').put(isAuthenticatedUser,authorizeRoles('Admin'),updateUser);
-router.route('/student/approve/:id').put(isAuthenticatedUser,authorizeRoles('Admin'), approveUser);
+router.get('/project', getAllProjects);
 
 module.exports = router;

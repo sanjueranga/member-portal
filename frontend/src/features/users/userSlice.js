@@ -184,9 +184,6 @@ export const userSlice = createSlice({
 	initialState,
 	reducers: {
 		reset: (state) => initialState,
-		// setInitialUserData: (state, action) => {
-		// 	state.user = action.payload;
-		// }
 	},
 	extraReducers: (builder) => {
 		builder
@@ -340,6 +337,6 @@ export const userSlice = createSlice({
 			});
 	},
 });
-// export const {setInitialCUserData} = userSlice.actions;
+
 export const { reset } = userSlice.actions;
 export default userSlice.reducer;

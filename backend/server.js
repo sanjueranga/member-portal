@@ -1,29 +1,45 @@
-const app = require("./app")
-const express = require("express");
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const dotenv = require('dotenv');
+require('dotenv').config();
+const app = express();
 const path = require('path');
-const envPath = path.resolve(__dirname, '..', '.env')
-dotenv.config({path:envPath});
-
-const connectDatabase = require("./config/dbconfig");
 const PORT = process.env.PORT || 8060;
 
-connectDatabase();
+app.use(cors({
+    origin:["http:localhost:3000","https://member-portal-csup.onrender.com"],
+}));
+app.use(bodyParser.json());
 
+const URL = process.env.MONGODB_URL;
 
-// //servr frontend
+mongoose.connect(URL);
 
-// if (process.env.NODE_ENV === 'production') {
-// 	app.use(express.static(path.join(__dirname, '../frontend/build')));
+const connection = mongoose.connection;
 
-// 	app.get('*', (req, res) =>
-// 		res.sendFile(
-// 			path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
-// 		)
-// 	);
-// } else {
-// 	app.get('/', (req, res) => res.send('App is not ready yet'));
-// }
+connection.once('open', () => {
+	console.log('MongoDB connection success');
+});
+
+// const studentRouter = require('./routes/students');
+const studentRouter = require('./routes/authRoutes');
+app.use('/student', studentRouter);
+
+//servr frontend
+
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+	app.get('*', (req, res) =>
+		res.sendFile(
+			path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
+		)
+	);
+} else {
+	app.get('/', (req, res) => res.send('App is not ready yet'));
+}
 
 app.listen(PORT, () => {
 	console.log('Server is up and running on : ' + PORT);
