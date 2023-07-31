@@ -75,10 +75,10 @@ export const authSlice = createSlice({
 			state.isSuccess = false;
 			state.isError = false;
 			state.message = '';
-		 },
-		// ,setInitialUserData: (state, action) => {
-		// 	state.user = action.payload;
-		// },
+		 }
+		,setInitialUserData: (state, action) => {
+			state.user = action.payload;
+		},
 		
 	},
 	extraReducers: (builder) => {
@@ -116,6 +116,6 @@ export const authSlice = createSlice({
 			});
 	},
 });
-// export const {setInitialUserData} = authSlice.actions;
+export const {setInitialUserData} = authSlice.actions;
 export const { reset } = authSlice.actions;
 export default authSlice.reducer;
