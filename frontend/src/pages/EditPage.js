@@ -171,48 +171,46 @@ function EditPage() {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		toast.error(e.target);
-		if (!contactNumber.match(/^\94\d{9}$/)) {
-			toast.error('Please enter a valid contact number (ex: +94 XXXXXXXX)', { theme: 'dark' });
-		} else {
-			const userData = {
-				_id,
-				name,
-				email,
-				password,
-				regNo,
-				profilePic,
-				contactNumber,
-				about,
-				birthDate,
-				facebook,
-				twitter,
-				linkdin,
-				instagram,
-				github,
-				headline,
-				cv,
-				gender,
-				website,
-				skills,
-			};
-			const loginInfo = {
-				email,
-				password,
-			};
 
-			dispatch(updateAll(userData));
-			dispatch(getMe(user.token));
-			if (isSuccess) {
-				toast.error('Request is not completed. Try again later!', {
-					theme: 'dark',
-				});
-			} else {
-				setShowMessage(true);
-				toast.success('Your account details have been saved.', {
-					theme: 'dark',
-				});
-			}
+		const userData = {
+			_id,
+			name,
+			email,
+			password,
+			regNo,
+			profilePic,
+			contactNumber,
+			about,
+			birthDate,
+			facebook,
+			twitter,
+			linkdin,
+			instagram,
+			github,
+			headline,
+			cv,
+			gender,
+			website,
+			skills,
+		};
+		const loginInfo = {
+			email,
+			password,
+		};
+
+		dispatch(updateAll(userData));
+		dispatch(getMe(user.token));
+		if (isSuccess) {
+			toast.error('Request is not completed. Try again later!', {
+				theme: 'dark',
+			});
+		} else {
+			setShowMessage(true);
+			toast.success('Your account details have been saved.', {
+				theme: 'dark',
+			});
 		}
+
 	};
 
 
