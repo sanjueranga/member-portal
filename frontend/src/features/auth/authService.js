@@ -36,7 +36,7 @@ const getUser = async (token) => {
 			Authorization: `Bearer ${token}`,
 		},
 	};
-	const response = await axios.get(API_LINK+'/user/', config);
+	const response = await axios.get(API_LINK+'student/user/', config);
 	return response.data;
 };
 
