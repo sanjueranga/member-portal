@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import UserCardPending from '../components/UserCardPending';
 import { getUsers } from '../features/users/userSlice';
 
-const API_LINK = process.env.REACT_APP_AP_URL;
+const API_LINK = process.env.REACT_APP_API_URL;
 
 function Members({ searchName }) {
 	const API_URL =API_LINK+'/student/'
