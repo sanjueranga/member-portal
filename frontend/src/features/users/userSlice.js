@@ -101,7 +101,6 @@ export const deleteUser = createAsyncThunk(
 		}
 	}
 );
-
 //update user
 export const updateUser = createAsyncThunk(
 	'user/update',
