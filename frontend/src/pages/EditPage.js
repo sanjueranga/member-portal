@@ -169,51 +169,35 @@ function EditPage() {
 		}
 	};
 	const onSubmit = (e) => {
-		e.preventDefault()
-
-
+		e.preventDefault();
 		if (1 === 2) {
 			toast.error('Image URL is not valid!', { theme: 'dark' });
 		} else {
-			const userData = {
-				_id,
-				name,
-				email,
-				password,
-				regNo,
-				profilePic,
-				contactNumber,
-				about,
-				birthDate,
-				facebook,
-				twitter,
-				linkdin,
-				instagram,
-				github,
-				headline,
-				cv,
-				gender,
-				website,
-				skills,
-			};
-			const loginInfo = {
-				email,
-				password,
-			};
-			if (!email.match(/^[a-zA-Z0-9._%+-]+@(?!gmail.com)(?!yahoo.com)(?!hotmail.com)(?!yahoo.co.in)(?!aol.com)(?!live.com)(?!outlook.com)[a-zA-Z0-9_-]+.[a-zA-Z0-9-.]{2,61}$/)) {
+			if (
+				!email.match(
+					/^[a-zA-Z0-9._%+-]+@(?!gmail.com)(?!yahoo.com)(?!hotmail.com)(?!yahoo.co.in)(?!aol.com)(?!live.com)(?!outlook.com)[a-zA-Z0-9_-]+.[a-zA-Z0-9-.]{2,61}$/
+				)
+			) {
 				toast.error('Please enter a valid university email', { theme: 'dark' });
 			} else if (!regNo.match(/^(S\/[A-Z\d]{2}\/\d{3}|S\d{5})$/i)) {
-				toast.error('Please enter a valid registration number (ex: S/XX/XXX or SXXXXX)', { theme: 'dark' });
-			}
-			else if (!contactNumber.match(/^(?:\+94\d{9})?$/)) {
-				toast.error('Please enter a valid contact number (ex: 94XXXXXXXX)', { theme: 'dark' });
+				toast.error(
+					'Please enter a valid registration number (ex: S/XX/XXX or SXXXXX)',
+					{ theme: 'dark' }
+				);
+			} else if (!contactNumber.match(/^(?:\94\d{9})?$/)) {
+				toast.error(
+					'Please enter a valid contact number (ex: 947XXXXXXXX)',
+					{ theme: 'dark' }
+				);
 			} else {
 				const role = 'Member';
 				const userStatus = false;
 				const currentdate = new Date();
-				const applyDate = `${currentdate.getDate()}/${currentdate.getMonth() + 1}/${currentdate.getFullYear()} | ${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()}`;
+				const applyDate = `${currentdate.getDate()}/${currentdate.getMonth() + 1
+					}/${currentdate.getFullYear()} | ${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()}`;
 
 				const userData = {
+					_id,
 					name,
 					email,
 					role,
@@ -230,19 +214,17 @@ function EditPage() {
 					theme: 'dark',
 				});
 
+				dispatch(updateAll(userData));
+				dispatch(getMe(user.token));
+				if (isSuccess) {
+					toast.error('Request is not completed. Try again later!', {
+						theme: 'dark',
+					});
+				}
 			}
-
-			dispatch(updateAll(userData));
-			dispatch(getMe(user.token));
-			if (isSuccess) {
-				toast.error('Request is not completed. Try again later!', {
-					theme: 'dark',
-				});
-			}
-
-
 		}
 	};
+
 
 	return (
 		<>
@@ -499,7 +481,7 @@ function EditPage() {
 															type='text'
 															name='contactNumber'
 															id='contactNumber'
-
+															value={contactNumber}
 															autoComplete='phone'
 															onChange={onChange}
 															placeholder='Enter Contact Number'
