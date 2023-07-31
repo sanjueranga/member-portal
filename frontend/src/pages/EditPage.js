@@ -172,9 +172,7 @@ function EditPage() {
 		e.preventDefault();
 		toast.error(e.target);
 
-		if (imageLoading || !imageIsValid) {
-			toast.error('Image URL is not valid!', { theme: 'dark' });
-		} else if (!email.match(/^[a-zA-Z0-9._%+-]+@(?!gmail.com)(?!yahoo.com)(?!hotmail.com)(?!yahoo.co.in)(?!aol.com)(?!live.com)(?!outlook.com)[a-zA-Z0-9_-]+.[a-zA-Z0-9-.]{2,61}$/)) {
+		if (!email.match(/^[a-zA-Z0-9._%+-]+@(?!gmail.com)(?!yahoo.com)(?!hotmail.com)(?!yahoo.co.in)(?!aol.com)(?!live.com)(?!outlook.com)[a-zA-Z0-9_-]+.[a-zA-Z0-9-.]{2,61}$/)) {
 			toast.error('Please enter a valid university email', { theme: 'dark' });
 		} else if (!regNo.match(/^(S\/[A-Z\d]{2}\/\d{3}|S\d{5})$/i)) {
 			toast.error('Please enter a valid registration number (ex: S/XX/XXX or SXXXXX)', { theme: 'dark' });
