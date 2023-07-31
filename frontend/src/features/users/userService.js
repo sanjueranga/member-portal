@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Cipher } from 'crypto';
 const API_LINK = process.env.REACT_APP_API_URL;
 const API_URL =API_LINK+'/student/'
 
@@ -52,8 +53,13 @@ const getMe = async (token) => {
 
 
 //delete users
-const deleteUser = async (id) => {
-	const response = await axios.delete(API_URL + 'delete/' + id);
+const deleteUser = async (id,token) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+	const response = await axios.delete(API_URL + 'delete/' + id,config);
 	return response.data;
 };
 

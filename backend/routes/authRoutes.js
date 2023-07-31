@@ -29,7 +29,7 @@ router.post('/login', loginUser);
 
 router.post('/project/create', createProject);
 
-router.delete('/delete/:id', deleteUser);
+router.delete('/delete/:id',protect, deleteUser);
 router.delete('/project/delete/:id', deletePoject);
 
 router.put('/update/:id', updateUser);
