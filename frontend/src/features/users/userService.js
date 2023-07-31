@@ -62,10 +62,14 @@ const deleteUser = async (id) => {
 
 //update user
 const updateUser = async (id, userData) => {
+	const headers = {
+		'csup-api-key': apiKey
+	}
 	// console.log('userService : ', userData);
 	const response = await axios.put(
 		API_URL + 'update/' + id,
-		userData
+		userData,
+		{headers}
 		// {userStatus: true,confirmDate: applyDate,approvedBy: user.name,}
 	);
 
