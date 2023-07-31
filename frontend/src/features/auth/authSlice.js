@@ -1,13 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import authService from './authService';
-import Cookies from 'js-cookie';
 
-//get user from localstorage
-let  userData = Cookies.get('user');
-// let localUser = localStorage.getItem('user');
+
+
 
 const initialState = {
-	user:userData,
+	user:null,
 	isError: false,
 	isSuccess: false,
 	isLoading: false,
