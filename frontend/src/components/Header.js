@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../img/logo.png';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { logout, reset ,getUser} from '../features/auth/authSlice';
+import { logout, reset } from '../features/auth/authSlice';
 import male from '../img/male.png';
 import female from '../img/female.png';
 import { getMe, logoutUser } from '../features/users/userSlice';
@@ -33,7 +33,7 @@ function Header({ setSearchName }) {
 	const [imageLoading, setImageLoading] = useState(true);
 	const [imageIsValid, setImageIsValid] = useState(null);
 	useEffect(() => {
-		dispatch(getUser())
+		
 		if (user) {
 			dispatch(getMe(user.token));
 			

@@ -152,7 +152,7 @@ const getUserById = asyncHandler(async (req, res) => {
 //update user
 
 const updateUser = asyncHandler(async (req, res) => {
-	let userId = req.user.id;
+	let userId = req.params.id;
 
 	const {
 		email,
@@ -278,7 +278,7 @@ const updateRole = asyncHandler(async (req, res) => {
 
 //delete user
 const deleteUser = asyncHandler(async (req, res) => {
-	let user_Id = req.user.id;
+	let user_Id = req.params.id;
 	const user = await Student.findOne({ user_Id });
 	await Student.findByIdAndDelete(user_Id)
 		.then(() => {

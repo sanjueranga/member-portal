@@ -1,6 +1,7 @@
 import axios from 'axios';
-const API_LINK = process.env.REACT_APP_API_URL;
 import Cookies from 'js-cookie';
+const API_LINK = process.env.REACT_APP_API_URL;
+
 
 
 
@@ -40,7 +41,7 @@ const authService = {
 	// register,
 	logout,
 	login,
-  getUser,
+  
   
   
 };
