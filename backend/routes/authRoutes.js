@@ -38,7 +38,7 @@ router.put('/project/update/:id', updateProject);
 router.put('/update/role/:id', updateRole);
 
 router.get('/get/:id', getUserById);
-router.get('/user', getUser);
+router.get('/user', protect, getUser);
 router.get('/project/getAll/:id', getProjectByUserId);
 router.get('/project/get/:id', getProjectById);
 
