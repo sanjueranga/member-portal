@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
+
 import {
 	updateAll,
 	getUserById,
@@ -14,13 +15,15 @@ import female from '../img/female.png';
 import { create, getProjectByUserId } from '../features/projects/projectSlice';
 import ProjectTab from '../components/ProjectTab';
 const API_LINK = process.env.REACT_APP_API_URL;
+
 export default function Profile() {
 	let { id } = useParams();
 	const API_URL = API_LINK+'/student/get/';
 	const PROJECT_API = '/student/project/';
 
-	const { user } = useSelector((state) => state.auth);
+	const user = useSelector((state) => state.auth.user);
 	const [skills, setSkills] = useState([]);
+
 
 	const { isError, isSuccess, isLoading, profileUser } = useSelector(
 		(state) => state.user
@@ -34,7 +37,7 @@ export default function Profile() {
 	// get data from api
 	useEffect(() => {
 		async function getUsers() {
-			const userResponse = await axios.get(API_URL + id);
+			const userResponse = await axios.get(API_URL+id);
 			setProfileOwner(userResponse.data);
 		}
 

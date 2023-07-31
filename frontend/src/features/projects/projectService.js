@@ -1,6 +1,7 @@
 import axios from 'axios';
 const API_LINK = process.env.REACT_APP_API_URL;
-const API_URL = API_LINK+'/student/project/';
+
+const API_URL = API_LINK+'/project/';
 
 const config = {
 	headers: {

@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import CountUp from 'react-countup';
+
 const API_LINK = process.env.REACT_APP_API_URL;
+
 function UserStat() {
 	const { allUsers } = useSelector((state) => state.user);
 

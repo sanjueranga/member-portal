@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import HeroImage from '../img/hero image.png';
-
 function Home() {
 	return (
 		<div>

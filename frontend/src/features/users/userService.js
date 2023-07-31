@@ -1,6 +1,7 @@
 import axios from 'axios';
 const API_LINK = process.env.REACT_APP_API_URL;
-const API_URL = API_LINK+'/student/';
+const API_URL =API_LINK+'/student/'
+
 //create new user
 const register = async (userData) => {
 	const response = await axios.post(API_URL + 'register/', userData);
@@ -33,7 +34,9 @@ const getUserById = async (id) => {
 	return response.data;
 };
 //getme
+
 const getMe = async (token) => {
+	
 	const config = {
 		headers: {
 			'Access-Control-Allow-Credentials': true,
@@ -43,9 +46,10 @@ const getMe = async (token) => {
 			Authorization: `Bearer ${token}`,
 		},
 	};
-	const response = await axios.get(API_URL + 'user/', config);
+	const response = await axios.get(API_LINK+'/user/', config);
 	return response.data;
 };
+
 
 //delete users
 const deleteUser = async (id) => {
