@@ -119,12 +119,12 @@ function EditPage() {
 		skills,
 	} = formData;
 	const onChange = (e) => {
+		const { name, value } = e.target;
 		setFormData((prevState) => ({
 			...prevState,
-			[e.target.name]: e.target.value,
+			[name]: value,
 		}));
 	};
-
 	useEffect(() => {
 		fetch(profilePic).then((res) => {
 			setImageIsValid(res.status === 200);
