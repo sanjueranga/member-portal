@@ -152,7 +152,7 @@ const getUserById = asyncHandler(async (req, res) => {
 //update user
 
 const updateUser = asyncHandler(async (req, res) => {
-	let userId = req.params.id;
+	let userId = req.user.id;
 
 	const {
 		email,
@@ -212,7 +212,7 @@ const updateUser = asyncHandler(async (req, res) => {
 
 	await Student.findByIdAndUpdate(userId, updateStudent)
 		.then(() => {
-			res.status(200).send({ status: 'User updated', id: req.params.id });
+			res.status(200).send({ status: 'User updated', id: req.user.id });
 		})
 		.catch((err) => {
 			console.log(err);
