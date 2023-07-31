@@ -92,7 +92,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 	if (user && (await bcrypt.compare(password, user.password))) {
 
-		sendToken(user, 200, res)
+
 		res.json({
 			_id: user.id,
 			name: user.name,
@@ -120,6 +120,8 @@ const loginUser = asyncHandler(async (req, res) => {
 			website: user.website,
 			skills: user.skills,
 		});
+		sendToken(user, 200, res)
+		console.log("login successfull")
 	} else {
 		res.status(400);
 		throw new Error('Invalid credentials');
@@ -451,7 +453,7 @@ const deleteUserAdmin = asyncHandler(async (req, res) => {
 // @route   GET /api/users/me
 // @access  Private
 const getUser = asyncHandler(async (req, res) => {
-	
+	console.log("req user : "+req.user)
 	res.status(200).json(req.user);
 });
 
