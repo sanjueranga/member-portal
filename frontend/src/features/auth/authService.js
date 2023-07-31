@@ -1,6 +1,6 @@
 import axios from 'axios';
 const API_LINK = process.env.REACT_APP_API_URL;
-
+import Cookies from 'js-cookie';
 
 
 
@@ -19,32 +19,21 @@ const login = async (userData) => {
 
       if (response.data) {
         localStorage.setItem('user', JSON.stringify(response.data.user));
+        Cookies.set('user', JSON.stringify(response.data.user) , { expires: 1 });
 
       }
 
       return response.data;
 };
 
-//get from cookies
-const getUser = async (token) => {
-  const config = {
-		headers: {
-			'Access-Control-Allow-Credentials': true,
-			'Access-Control-Allow-Origin': '*',
-			'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-			'Access-Control-Allow-Headers': 'application/json',
-			Authorization: `Bearer ${token}`,
-		},
-	};
-	const response = await axios.get(API_LINK+'student/user/', config);
-	return response.data;
-};
+
 
 
 //logout user
 const logout = async () => {
   await axios.get(API_LINK+'/student/logout');
   localStorage.removeItem('user');
+  Cookies.remove('user');
 };
 
 const authService = {
