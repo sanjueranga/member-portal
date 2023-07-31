@@ -119,6 +119,7 @@ const loginUser = asyncHandler(async (req, res) => {
 			website: user.website,
 			skills: user.skills,
 		});
+		console.log("login successfull")
 		
 	} else {
 		res.status(400);
