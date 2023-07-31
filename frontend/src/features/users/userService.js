@@ -69,7 +69,7 @@ const updateUser = async (id, userData) => {
 	const response = await axios.put(
 		API_URL + 'update/' + id,
 		userData,
-		{headers}
+		{ headers }
 		// {userStatus: true,confirmDate: applyDate,approvedBy: user.name,}
 	);
 
@@ -77,10 +77,14 @@ const updateUser = async (id, userData) => {
 };
 
 const approveUser = async (id, userData) => {
+	const headers = {
+		'csup-api-key': apiKey
+	}
 	// console.log('userService : ', userData);
 	const response = await axios.put(
 		API_URL + 'approve/' + id,
-		userData
+		userData,
+		{ headers }
 		// {userStatus: true,confirmDate: applyDate,approvedBy: user.name,}
 	);
 
@@ -88,9 +92,13 @@ const approveUser = async (id, userData) => {
 };
 const updateRole = async (id, userData) => {
 	// console.log('userService : ', userData);
+	const headers = {
+		'csup-api-key': apiKey
+	}
 	const response = await axios.put(
 		API_URL + 'update/role/' + id,
-		userData
+		userData,
+		{ headers }
 		// {userStatus: true,confirmDate: applyDate,approvedBy: user.name,}
 	);
 

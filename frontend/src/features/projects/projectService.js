@@ -1,8 +1,8 @@
 import axios from 'axios';
 const API_LINK = process.env.REACT_APP_API_URL;
 
-const API_URL = API_LINK+'/student/project/';
-
+const API_URL = API_LINK + '/student/project/';
+const apiKey = process.env.REACT_APP_CSUP_API_KEY
 const config = {
 	headers: {
 		'Access-Control-Allow-Credentials': true,
@@ -40,7 +40,10 @@ const deleteProjectById = async (id) => {
 };
 
 const updateProject = async (id, projectData) => {
-	const response = await axios.put(API_URL + 'update/' + id, projectData);
+	const headers = {
+		'csup-api-key': apiKey
+	}
+	const response = await axios.put(API_URL + 'update/' + id, projectData, { headers });
 
 	return response.data;
 };
