@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 const API_LINK = process.env.REACT_APP_API_URL;
 
 
@@ -18,7 +19,9 @@ const login = async (userData) => {
       const response = await axios.post(API_LINK+'/student/login', userData, config);
 
       if (response.data) {
-        localStorage.setItem('user', response.data.user);
+        const userD = response.data;
+        localStorage.setItem('user', userD);
+        Cookies.set('user',userD,{expires:1});
         
 
       }
@@ -33,6 +36,7 @@ const login = async (userData) => {
 const logout = async () => {
   await axios.get(API_LINK+'/student/logout');
   localStorage.removeItem('user');
+  Cookies.remove('user');
 
 };
 
