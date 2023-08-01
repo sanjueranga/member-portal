@@ -22,7 +22,7 @@ export const login = createAsyncThunk(
 	async (user, thunkAPI) => {
 		try {
 
-			response= await authService.login(user);
+			const response= await authService.login(user);
 			const userD = JSON.stringify(response.data);
 			localStorage.setItem('user', userD);
 			Cookies.set('user',userD,{expires:1});
