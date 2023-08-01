@@ -19,14 +19,12 @@ const login = async (userData) => {
       const response = await axios.post(API_LINK+'/student/login', userData, config);
 
       if (response.data) {
-        const userD = JSON.stringify(response.data);
+        const userD = JSON.stringify(response.data.user);
         localStorage.setItem('user', userD);
         Cookies.set('user',userD,{expires:1});
         
 
-      }
-
-      return response.data;
+      }return response.data;
 };
 
 
