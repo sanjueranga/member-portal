@@ -18,7 +18,7 @@ const login = async (userData) => {
       const response = await axios.post(API_LINK+'/student/login', userData, config);
 
       if (response.data) {
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+        localStorage.setItem('user', response.data.user);
         
 
       }
