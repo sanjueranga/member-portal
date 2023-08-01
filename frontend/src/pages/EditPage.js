@@ -536,7 +536,7 @@ function EditPage() {
 												</div>
 
 												<div className='col-span-6 sm:col-span-3'>
-													<label className='text-gray-300'>Linkdin</label>
+													<label className='text-gray-300'>Linkedin</label>
 													<div className='relative flex items-center text-gray-400 focus-within:text-cyan-400'>
 														<span className='absolute flex items-center h-6 pr-4 border-r border-gray-500 left-4'>
 															<i className='text-lg md:text-base fa-brands fa-linkedin-in'></i>
@@ -548,7 +548,7 @@ function EditPage() {
 															value={linkdin}
 															autoComplete='linkdin'
 															onChange={onChange}
-															placeholder='URL of Linkdin Account'
+															placeholder='URL of Linekdin Account'
 															className='block w-full py-3 pl-16 pr-4 text-base leading-8 text-gray-300 transition-colors duration-200 ease-in-out bg-gray-600 border border-gray-600 rounded-md outline-none bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 focus:border-sky-500'
 														/>
 													</div>
