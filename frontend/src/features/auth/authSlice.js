@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import authService from './authService';
-
+import Cookies from 'js-cookie';
+import { response } from 'express';
 
 
 
@@ -20,7 +21,12 @@ export const login = createAsyncThunk(
 	// 'auth/login',
 	async (user, thunkAPI) => {
 		try {
-			return await authService.login(user);
+
+			response= await authService.login(user);
+			const userD = JSON.stringify(response.data);
+			localStorage.setItem('user', userD);
+			Cookies.set('user',userD,{expires:1});
+			return response;
 			
 		} catch (error) {
 			const message =
