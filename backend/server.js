@@ -18,16 +18,17 @@ app.use(cors({
 app.use(bodyParser.json());
 
 
+const URL = process.env.MONGODB_URL;
 
-const connectDatabase =()=>{
-	main().catch(err => console.log(err));
-   async function main() {
-   await mongoose.connect(process.env.DB_LINK);
-   console.log("MongoDB succesfully connected");
+mongoose.connect(URL);
 
-   }}
+const connection = mongoose.connection;
 
-connectDatabase()
+connection.once('open', () => {
+	console.log('MongoDB connection success');
+});
+
+
 
 // const studentRouter = require('./routes/students');
 const studentRouter = require('./routes/authRoutes');
