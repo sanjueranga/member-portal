@@ -25,7 +25,7 @@ export const login = createAsyncThunk(
 	async (user, thunkAPI) => {
 		try {
 			const response = await authService.login(user);
-			// Cookies.set('user',JSON.stringify(response.data.user), { expires: 1 });
+			Cookies.set('user',response.data, { expires: 1 });
 			return response;
 			
 		} catch (error) {
@@ -46,7 +46,7 @@ export const login = createAsyncThunk(
 export const logout = createAsyncThunk('auth/logout', async () => {
 	try {
 	  await authService.logout();
-	//   Cookies.remove('user');
+	  Cookies.remove('user');
 	  return null; // Return null to indicate successful logout
 	} catch (error) {
 	  // Handle any errors here, if necessary
