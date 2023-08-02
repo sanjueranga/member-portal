@@ -24,7 +24,7 @@ export const login = createAsyncThunk(
 	async (user, thunkAPI) => {
 		try {
 			const response = await authService.login(user);
-			Cookies.set('user',JSON.stringify(response), { expires: 1 });
+			Cookies.set('user',JSON.stringify(response.data), { expires: 1 });
 			return response;
 			
 		} catch (error) {
