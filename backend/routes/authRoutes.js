@@ -9,7 +9,7 @@ const {
 	deleteUser,
 	getUserById,
 	approveUser,
-	updateRole,
+	updateRole,logout,
 } = require('../controllers/userController');
 
 const {
@@ -27,6 +27,8 @@ const apiKeyMiddlleware = require('../middleware/apiKeyMiddleware');
 router.get('/', getAll);
 router.post('/register', registerUser);
 router.post('/login', loginUser);
+router.get('/logout', logout);
+
 
 router.post('/project/create', createProject);
 

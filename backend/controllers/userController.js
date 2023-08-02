@@ -317,6 +317,17 @@ const generateToken = (id) => {
 	});
 };
 
+const logout = asyncHandler(async (req, res, next) => {
+
+	console.log("logged out")
+    res.status(200).json({
+        success: true,
+        message: 'Logged out'
+    })
+});
+
+
+
 module.exports = {
 	registerUser,
 	loginUser,
@@ -327,4 +338,5 @@ module.exports = {
 	getUserById,
 	approveUser,
 	updateRole,
+	logout,
 };
