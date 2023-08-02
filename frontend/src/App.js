@@ -25,7 +25,7 @@ function App() {
 	const { user } = useSelector((state) => state.auth);
 	const {currentUser} = useSelector((state)=>state.user);
 
-	
+	console.log(user);	
 	
 	
 	  useEffect(() => {
