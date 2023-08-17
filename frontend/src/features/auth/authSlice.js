@@ -8,8 +8,8 @@ const cookiUser = Cookies.get('user')
 
 
 const initialState = {
-	// user : cookiUser ? JSON.parse(cookiUser) : null,
-	user:null,
+	user : cookiUser ? JSON.parse(cookiUser) : null,
+	// user:null,
 	isError: false,
 	isSuccess: false,
 	isLoading: false,

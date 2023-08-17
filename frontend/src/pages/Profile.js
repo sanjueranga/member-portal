@@ -57,7 +57,8 @@ export default function Profile() {
 	
 	const [addProject, setAddProject] = useState(true);
 	useEffect(() => {
-		dispatch(getMe(user.token))
+
+		// dispatch(getMe(user.token))
 		fetch(profileOwner.profilePic).then((res) => {
 			setImageIsValid(res.status === 200);
 			setImageLoading(false);
