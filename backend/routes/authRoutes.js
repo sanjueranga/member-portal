@@ -41,7 +41,7 @@ router.put('/project/update/:id', apiKeyMiddlleware, updateProject);
 router.put('/update/role/:id', apiKeyMiddlleware, updateRole);
 
 router.get('/get/:id', getUserById);
-router.get('/user', protect, getUser);
+router.get('/user', getUser);
 router.get('/project/getAll/:id', getProjectByUserId);
 router.get('/project/get/:id', getProjectById);
 
