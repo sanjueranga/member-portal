@@ -32,13 +32,13 @@ router.get('/logout', logout);
 
 router.post('/project/create', createProject);
 
-router.delete('/delete/:id', deleteUser);
+router.delete('/delete/:id', apiKeyMiddlleware, deleteUser);
 router.delete('/project/delete/:id', deletePoject);
 
-router.put('/update/:id', updateUser);
-router.put('/approve/:id', approveUser);
-router.put('/project/update/:id',  updateProject);
-router.put('/update/role/:id', updateRole);
+router.put('/update/:id', apiKeyMiddlleware, updateUser);
+router.put('/approve/:id', apiKeyMiddlleware, approveUser);
+router.put('/project/update/:id', apiKeyMiddlleware, updateProject);
+router.put('/update/role/:id', apiKeyMiddlleware, updateRole);
 
 router.get('/get/:id', getUserById);
 router.get('/user', protect, getUser);
