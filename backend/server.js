@@ -12,7 +12,7 @@ dotenv.config({path:envPath});
 const app = express();
 const PORT = process.env.PORT || 8060;
 
-app.use(cors)
+
 app.use(cors({
     origin:["http://localhost:3000","https://member-portal-csup.onrender.com"],
 }));

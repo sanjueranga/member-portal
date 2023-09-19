@@ -17,4 +17,6 @@ COPY . .
 EXPOSE 8060
 
 # Define the command to run your application
-CMD ["node", "app.js"]
+CMD ["node", "server.js"]
+
+
