@@ -5,18 +5,18 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
-const envPath = path.resolve(__dirname, '..', '.env')
+const envPath = path.resolve(__dirname, '.', '.env')
 dotenv.config({path:envPath});
 
 
 const app = express();
 const PORT = process.env.PORT || 8060;
 
+app.use(cors)
 app.use(cors({
-    origin:["http:localhost:3000","https://member-portal-csup.onrender.com"],
+    origin:["http://localhost:3000","https://member-portal-csup.onrender.com"],
 }));
 app.use(bodyParser.json());
-
 
 const URL = process.env.MONGODB_URL;
 
