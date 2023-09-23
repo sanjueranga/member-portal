@@ -12,9 +12,13 @@ dotenv.config({path:envPath});
 const app = express();
 const PORT = process.env.PORT || 8060;
 
+const allowedOrigins = [
+    "https://member-portal-csup.onrender.com",
+    process.env.ADDITIONAL_ORIGIN // Replace with the name of your environment variable
+];
 
 app.use(cors({
-    origin:["http://localhost:3000","https://member-portal-csup.onrender.com"],
+    origin: allowedOrigins,
 }));
 app.use(bodyParser.json());
 
