@@ -11,7 +11,7 @@ import { getMe, logoutUser } from '../features/users/userSlice';
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ');
 }
-
+	
 function Header({ setSearchName }) {
 	const navigation = [
 		{ name: 'Members', to: '/members', current: true },
@@ -102,7 +102,7 @@ function Header({ setSearchName }) {
 							'px-3 py-2 rounded-md text-sm font-medium hidden lg:block'
 						)}
 					>
-						CSUP Member Portal
+						CSUP Member Portal 
 					</Link>
 				</div>
 				<div className="hidden md:block sm:ml-6">
